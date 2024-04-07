@@ -19,4 +19,14 @@ model User{
   username    String    @db.VarChar(255)
   email       String    @db.VarChar(255)
   password    String    @db.VarChar(511)
+  JournalEntries JournalEntry[]
+}
+
+model JournalEntry {
+  id          String    @id @default(cuid())
+  user        User      @relation(fields: [userId], references: [id])
+  userId      String
+  date        DateTime  @default(now()) @db.Date
+  gratefulFor     String    @db.VarChar(63)
+  reason     String    @db.VarChar(63)
 }

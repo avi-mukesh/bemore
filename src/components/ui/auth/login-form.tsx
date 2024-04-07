@@ -36,14 +36,25 @@ export default function Form() {
           <div className="grid gap-2">
             <Label htmlFor="username">Username</Label>
             <div className="relative">
-              <Input id="username" type="text" name="username" required />
+              <Input
+                className="pl-10"
+                id="username"
+                type="text"
+                name="username"
+                required
+              />
               <UserCircleIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
             </div>
           </div>
           <div className="grid gap-2">
             <Label htmlFor="password">Password</Label>
             <div className="relative">
-              <Input id="password" name="password" type="password" />
+              <Input
+                className="pl-10"
+                id="password"
+                name="password"
+                type="password"
+              />
               <KeyIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
             </div>
           </div>

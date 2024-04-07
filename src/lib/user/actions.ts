@@ -7,11 +7,23 @@ import { redirect } from "next/navigation";
 import { signIn } from "@/auth";
 import { AuthError } from "next-auth";
 
+const passwordRegex = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/i);
+
+type FormState = {
+    errors?: {
+        username?:string[],
+        email?: string[],
+        password?: string[],
+        confirmPassword?:string[]
+    };
+    message?:string | null
+}
+
 const FormSchema = z.object({
     id: z.string(),
     username: z.string(),
     email: z.string().email(),
-    password: z.string(),
+    password: z.string().regex(passwordRegex, "Password must be at least 8 characters, have a number, a lower case letter, an uppercase letter and a special character."),
     confirmPassword:z.string()
 })
 
@@ -25,17 +37,9 @@ const CreateUser = FormSchema.omit({id: true}).refine(
     }
   )
 
-type State = {
-    errors?: {
-        username?:string[],
-        email?: string[],
-        password?: string[],
-        confirmPassword?:string[]
-    };
-    message?:string | null
-}
 
-export async function createUser(prevState: State, formData:FormData) : Promise<State>{
+
+export async function createUser(prevState: FormState, formData:FormData) : Promise<FormState>{
     const validatedFields = CreateUser.safeParse({
         username: formData.get("username"),
         email: formData.get("email"),
@@ -44,7 +48,6 @@ export async function createUser(prevState: State, formData:FormData) : Promise<
     })
 
     if(!validatedFields.success){
-        console.log("not valid", validatedFields.error.flatten().fieldErrors)
         return {
             errors: validatedFields.error.flatten().fieldErrors,
             message: "Invalid data. Failed to register."
@@ -52,6 +55,26 @@ export async function createUser(prevState: State, formData:FormData) : Promise<
     }
 
     const {username, email, password} = validatedFields.data
+
+    const userWithSameUsername = await prisma.user.findFirst({where: {username}})
+    const userWithSameEmail = await prisma.user.findFirst({where: {email}})
+
+    if(userWithSameUsername){
+        return {
+            errors: {
+                username: ["That username is taken"]
+            }
+        }
+    }
+
+    if(userWithSameEmail){
+        return {
+            errors: {
+                email: ["That email is taken"]
+            }
+        }
+    }
+
     const hashedPassword = await hash(password, 10)
 
 

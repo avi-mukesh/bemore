@@ -21,6 +21,7 @@ import React from "react";
 import { useFormState } from "react-dom";
 import { createUser } from "@/lib/user/actions";
 import GoogleSigninButton from "./google-signin-button";
+import ValidationError from "./validation-error";
 
 export default function Form() {
   const initialState = { message: null, errors: {} };
@@ -38,6 +39,7 @@ export default function Form() {
             <Label htmlFor="username">Username</Label>
             <div className="relative">
               <Input
+                className="pl-10"
                 id="username"
                 type="text"
                 name="username"
@@ -46,19 +48,15 @@ export default function Form() {
               />
               <UserCircleIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
             </div>
-            <div id="username-error" aria-live="polite" aria-atomic="true">
-              {state.errors?.username &&
-                state.errors.username.map((error: string) => (
-                  <p className="mt-2 text-sm text-red-500" key={error}>
-                    {error}
-                  </p>
-                ))}
-            </div>
+            {state.errors?.username && (
+              <ValidationError state={state} field="username" />
+            )}
           </div>
           <div className="grid gap-2">
             <Label htmlFor="email">Email</Label>
             <div className="relative">
               <Input
+                className="pl-10"
                 id="email"
                 type="email"
                 name="email"
@@ -67,19 +65,15 @@ export default function Form() {
               />
               <AtSymbolIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
             </div>
-            <div id="email-error" aria-live="polite" aria-atomic="true">
-              {state.errors?.email &&
-                state.errors.email.map((error: string) => (
-                  <p className="mt-2 text-sm text-red-500" key={error}>
-                    {error}
-                  </p>
-                ))}
-            </div>
+            {state.errors?.email && (
+              <ValidationError state={state} field="email" />
+            )}
           </div>
           <div className="grid gap-2">
             <Label htmlFor="password">Password</Label>
             <div className="relative">
               <Input
+                className="pl-10"
                 id="password"
                 name="password"
                 type="password"
@@ -87,19 +81,15 @@ export default function Form() {
               />
               <KeyIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
             </div>
-            <div id="password-error" aria-live="polite" aria-atomic="true">
-              {state.errors?.password &&
-                state.errors.password.map((error: string) => (
-                  <p className="mt-2 text-sm text-red-500" key={error}>
-                    {error}
-                  </p>
-                ))}
-            </div>
+            {state.errors?.password && (
+              <ValidationError state={state} field="password" />
+            )}
           </div>
           <div className="grid gap-2">
             <Label htmlFor="confirmPassword">Confirm Password</Label>
             <div className="relative">
               <Input
+                className="pl-10"
                 id="confirmPassword"
                 name="confirmPassword"
                 type="password"
@@ -107,18 +97,9 @@ export default function Form() {
               />
               <KeyIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
             </div>
-            <div
-              id="confirmPassword-error"
-              aria-live="polite"
-              aria-atomic="true"
-            >
-              {state.errors?.confirmPassword &&
-                state.errors.confirmPassword.map((error: string) => (
-                  <p className="mt-2 text-sm text-red-500" key={error}>
-                    {error}
-                  </p>
-                ))}
-            </div>
+            {state.errors?.confirmPassword && (
+              <ValidationError state={state} field="confirmPassword" />
+            )}
           </div>
           <Button type="submit" className="w-full mt-2">
             Register
