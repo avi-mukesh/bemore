@@ -17,15 +17,22 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-import React from "react";
-import { useFormState } from "react-dom";
+import React, { useEffect } from "react";
+import { useFormState, useFormStatus } from "react-dom";
 import { createUser } from "@/lib/user/actions";
 import GoogleSigninButton from "./google-signin-button";
 import ValidationError from "./validation-error";
+import SubmitButton from "./submit-button";
 
 export default function Form() {
   const initialState = { message: null, errors: {} };
   const [state, dispatch] = useFormState(createUser, initialState);
+
+  const { pending, data, method, action } = useFormStatus();
+
+  useEffect(() => {
+    console.log("pending: ", pending);
+  }, [pending]);
 
   return (
     <Card className="mx-auto max-w-sm">
@@ -101,9 +108,7 @@ export default function Form() {
               <ValidationError state={state} field="confirmPassword" />
             )}
           </div>
-          <Button type="submit" className="w-full mt-2">
-            Register
-          </Button>
+          <SubmitButton text="Create account" />
         </form>
         <GoogleSigninButton />
         <div className="mt-4 text-center text-sm">

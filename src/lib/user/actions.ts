@@ -4,7 +4,7 @@ import prisma from "@/lib/db"
 import { z } from "zod"
 import {hash} from "bcryptjs"
 import { redirect } from "next/navigation";
-import { signIn } from "@/auth";
+import { signIn, signOut } from "@/auth";
 import { AuthError } from "next-auth";
 
 const passwordRegex = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/i);
@@ -100,6 +100,14 @@ export async function authenticate (prevState: string | undefined, formData: For
                     return "Something went wrong"
             }
         }
+        throw error
+    }
+}
+
+export async function logout() {
+    try {
+        await signOut()
+    }catch(error){
         throw error
     }
 }

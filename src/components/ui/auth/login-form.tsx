@@ -19,8 +19,8 @@ import { Label } from "@/components/ui/label";
 import React from "react";
 import { useFormState } from "react-dom";
 import { authenticate } from "@/lib/user/actions";
-import { signIn } from "next-auth/react";
 import GoogleSigninButton from "./google-signin-button";
+import SubmitButton from "./submit-button";
 
 export default function Form() {
   const [errorMessage, dispatch] = useFormState(authenticate, undefined);
@@ -58,9 +58,7 @@ export default function Form() {
               <KeyIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
             </div>
           </div>
-          <Button type="submit" className="w-full mt-2">
-            Log in
-          </Button>
+          <SubmitButton text="Log in" />
         </form>
         {errorMessage && (
           <div className="flex justify-center gap-2 my-2">
