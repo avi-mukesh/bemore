@@ -5,12 +5,12 @@ import {
   NavigationMenuList,
   NavigationMenuItem,
   NavigationMenuLink,
-} from "./navigation-menu";
+} from "../navigation-menu";
 import Link from "next/link";
 import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
-import { ModeToggle } from "../ModeToggle";
+import { ModeToggle } from "../../ModeToggle";
 import { signOut } from "next-auth/react";
-import { Button } from "./button";
+import { Button } from "../button";
 import { logout } from "@/lib/user/actions";
 
 type PropsType = {
@@ -37,7 +37,7 @@ export default function Navbar({ username }: PropsType) {
         </NavigationMenuItem>
         {username && (
           <NavigationMenuItem>
-            <Link href="dashboard" legacyBehavior passHref>
+            <Link href="journal" legacyBehavior passHref>
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                 My Journal
               </NavigationMenuLink>

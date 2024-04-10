@@ -4,6 +4,8 @@ import GoogleProvider from "next-auth/providers/google"
 import CredentialsProvider from "next-auth/providers/credentials"
 import { fetchUser } from "./lib/user/data"
 import {compare} from "bcryptjs"
+import { use } from "react"
+
 
 export const authConfig = {
     pages: {
@@ -14,24 +16,24 @@ export const authConfig = {
         maxAge:3600
     },
     callbacks: {
-
-        async jwt({ token, account, profile }) {
-            // Persist the OAuth access_token and or the user id to the token right after signin
-            if (account) {
-              token.accessToken = account.access_token
-              token.id = profile?.id
-            }
-            return token
-          },
+        async session({session, token}){
+            session.user.id = token.id as string
+            session.user.username = token.username as string
+            return session
+        },
+        async jwt({ token, user }) {
+            // user is the object from the DB call
+            return {...token, ...user}
+        },
         authorized({auth, request:{nextUrl}}){
             const isLoggedIn = !!auth?.user
-            const isOnDashboard = nextUrl.pathname.startsWith("/dashboard")
+            const isOnJournal = nextUrl.pathname.startsWith("/journal")
 
-            if(isOnDashboard){
+            if(isOnJournal){
                 if(isLoggedIn) return true;
                 return false;
             }else if(isLoggedIn) {
-                return Response.redirect(new URL("/dashboard", nextUrl));
+                return Response.redirect(new URL("/journal", nextUrl));
             }
             return true
         },
@@ -45,10 +47,11 @@ export const authConfig = {
             },
             async authorize(credentials) {
                 const parsedCredentials = z.object({username:z.string(), password: z.string()}).safeParse(credentials)
+                console.log("authorizing with", credentials)
                 if(parsedCredentials.success) {
                     const {username, password} = parsedCredentials.data
-                    console.log(username, password)
                     const user = await fetchUser(username)
+                    
                     if(user){
                         const passwordsMatch = await compare(password, user.password);
                         if(passwordsMatch) return user

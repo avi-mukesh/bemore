@@ -18,29 +18,32 @@ const FormSchema = z.object({
     id: z.string(),
     userId: z.string(),
     gratefulFor: z.string(),
-    reason: z.string().email(),
+    reason: z.string(),
 })
 
-const CreateJournalEntry = FormSchema.omit({id: true, userId:true})
+const CreateJournalEntry = FormSchema.omit({id: true})
 
 export async function createJournalEntry(prevState: FormState, formData:FormData) : Promise<FormState>{
+
     const validatedFields = CreateJournalEntry.safeParse({
-        gratefulFor: formData.get("gratefulForname"),
+        gratefulFor: formData.get("gratefulFor"),
         reason: formData.get("reason"),
+        userId: formData.get("userId")
     })
 
     if(!validatedFields.success){
+        console.log(validatedFields.error.flatten())
         return {
             errors: validatedFields.error.flatten().fieldErrors,
             message: "Invalid data. Failed to register."
         }
     }
 
-    const {gratefulFor, reason} = validatedFields.data
+    const {userId, gratefulFor, reason} = validatedFields.data
 
     try {
         await prisma.journalEntry.create({data: {
-            userId:"",
+            userId,
             gratefulFor,
             reason,
         }})

@@ -1,13 +1,11 @@
 import prisma from "../db";
 
-export async function fetchUser(username: string) {
+export async function fetchJournalEntriesForUser(userId: string) {
     // noStore()
     try {
-        const user = await prisma.user.findFirst({where:{username}});
-        if(user) return user;
-        return null;
+        const entries = await prisma.journalEntry.findMany({where:{userId}});
+        return entries;
     } catch (error) {
       console.error('Database Error:', error);
-      throw new Error(`No user with username ${username} found`);
     }
 }

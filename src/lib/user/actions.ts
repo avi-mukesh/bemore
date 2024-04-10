@@ -88,7 +88,7 @@ export async function createUser(prevState: FormState, formData:FormData) : Prom
 }
 
 export async function authenticate (prevState: string | undefined, formData: FormData){
-    console.log("authenticating...")
+    console.log("signing in with", formData.get("username"))
     try {
         await signIn("credentials", formData)
     }catch(error){

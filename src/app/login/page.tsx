@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 export default async function LoginForm() {
   const session = await auth();
   if (session) {
-    redirect("/dashboard");
+    redirect("/journal");
   }
   return (
     <main className="flex items-center justify-center min-h-screen">
