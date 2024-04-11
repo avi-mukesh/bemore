@@ -1,9 +1,10 @@
 import prisma from "../db";
+import { unstable_noStore as noStore } from 'next/cache';
 
 const PAGE_SIZE=6;
 
 export async function fetchJournalEntriesForUser(userId: string, currentPage:number) {
-    // noStore()
+  noStore()
   const skip = (currentPage - 1) * PAGE_SIZE
     try {
         const entries = await prisma.journalEntry.findMany({
@@ -18,7 +19,7 @@ export async function fetchJournalEntriesForUser(userId: string, currentPage:num
     }
 }
 export async function fetchJournalEntriesForUserPages(userId: string) {
-    // noStore()
+    noStore()
     try {
         const entries = await prisma.journalEntry.findMany({where:{userId}});
         return Math.ceil(entries.length / PAGE_SIZE);

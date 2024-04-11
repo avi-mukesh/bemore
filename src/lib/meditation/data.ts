@@ -2,15 +2,11 @@ import prisma from "../db";
 
 const PAGE_SIZE=6;
 
-export async function fetchMeditationsForUser(userId: string, currentPage:number) {
+export async function fetchMeditationsForUser(userId: string) {
     // noStore()
-  const skip = (currentPage - 1) * PAGE_SIZE
     try {
         const meditations = await prisma.meditation.findMany({
           where: { userId },
-          skip,
-          take: PAGE_SIZE,
-          orderBy: { "date" : "desc" }
         });
         return meditations;
     } catch (error) {

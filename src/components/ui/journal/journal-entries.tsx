@@ -26,7 +26,7 @@ export default async function JournalEntries({
 
   return (
     <div>
-      <div className="p-4 mx-auto grid gap-2 grid-cols-2 grid-rows-2">
+      <div className="p-4 mx-auto grid gap-2 grid-cols-3 grid-rows-2">
         {entries?.map((entry) => (
           <JournalEntryCard key={entry.id} entry={entry} />
         ))}

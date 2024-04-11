@@ -1,9 +1,10 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import JournalForm from "@/components/ui/journal/journal-form";
 import { auth } from "@/auth";
 import { fetchTodaysJournalEntryForUser } from "@/lib/journal/data";
 import JournalEntries from "@/components/ui/journal/journal-entries";
+import { JournalEntriesSkeleton } from "@/components/ui/skeletons";
 
 export default async function page({
   searchParams,
@@ -19,7 +20,9 @@ export default async function page({
     );
     if (todaysJournalEntry) {
       return (
-        <JournalEntries userId={session.user.id} currentPage={currentPage} />
+        <Suspense fallback={<JournalEntriesSkeleton />}>
+          <JournalEntries userId={session.user.id} currentPage={currentPage} />
+        </Suspense>
       );
     } else {
       return (
