@@ -39,7 +39,12 @@ export default function Navbar({ username }: PropsType) {
           <NavigationMenuItem>
             <Link href="journal" legacyBehavior passHref>
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                My Journal
+                Journal
+              </NavigationMenuLink>
+            </Link>
+            <Link href="meditation" legacyBehavior passHref>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                Meditation
               </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>

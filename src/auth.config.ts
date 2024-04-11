@@ -41,8 +41,9 @@ export const authConfig = {
         authorized({auth, request:{nextUrl}}){
             const isLoggedIn = !!auth?.user
             const isOnJournal = nextUrl.pathname.startsWith("/journal")
+            const isOnMeditation = nextUrl.pathname.startsWith("/meditation")
 
-            if(isOnJournal){
+            if(isOnJournal || isOnMeditation){
                 if(isLoggedIn) return true;
                 return false;
             }else if(isLoggedIn) {

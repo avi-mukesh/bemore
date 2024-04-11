@@ -2,10 +2,7 @@ import React from "react";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import JournalForm from "@/components/ui/journal/journal-form";
 import { auth } from "@/auth";
-import {
-  fetchJournalEntriesForUser,
-  fetchTodaysJournalEntryForUser,
-} from "@/lib/journal/data";
+import { fetchTodaysJournalEntryForUser } from "@/lib/journal/data";
 import JournalEntries from "@/components/ui/journal/journal-entries";
 
 export default async function page({

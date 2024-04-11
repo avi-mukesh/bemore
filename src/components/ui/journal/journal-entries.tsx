@@ -10,6 +10,8 @@ import { columns } from "./journal-entry-columns";
 import Pagination from "./pagination";
 import JournalPagination from "./pagination";
 
+import { useMediaQuery } from "usehooks-ts";
+
 type PropsType = {
   userId: string;
   currentPage: number;
@@ -20,7 +22,6 @@ export default async function JournalEntries({
   currentPage,
 }: PropsType) {
   const entries = await fetchJournalEntriesForUser(userId, currentPage);
-
   const totalPages = await fetchJournalEntriesForUserPages(userId);
 
   return (

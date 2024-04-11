@@ -20,6 +20,7 @@ model User{
   email       String    @db.VarChar(255)
   password    String    @db.VarChar(511)
   JournalEntries JournalEntry[]
+  Meditations Meditation[]
 }
 
 model JournalEntry {
@@ -30,4 +31,12 @@ model JournalEntry {
   gratefulFor     String    @db.VarChar(63)
   reason     String    @db.VarChar(63)
   @@unique([userId, date])
+}
+
+model Meditation {
+  id          String    @id @default(cuid())
+  user        User      @relation(fields: [userId], references: [id])
+  userId      String
+  date        DateTime  @default(now()) @db.Date
+  duration    Int       @db.Integer
 }
