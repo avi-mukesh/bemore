@@ -23,6 +23,7 @@ export default function SubmitButton({ text }: PropsType) {
         "bg-muted text-muted-foreground": pending,
       })}
       disabled={pending}
+      aria-disabled={pending}
     >
       {text}
     </Button>

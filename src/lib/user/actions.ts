@@ -6,6 +6,7 @@ import {hash} from "bcryptjs"
 import { redirect } from "next/navigation";
 import { signIn, signOut } from "@/auth";
 import { AuthError } from "next-auth";
+import { User } from "@prisma/client";
 
 const passwordRegex = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/i);
 
@@ -109,5 +110,17 @@ export async function logout() {
         await signOut()
     }catch(error){
         throw error
+    }
+}
+
+export async function createGoogleUserIfNotExists(email: string) {
+    const existingUser = await prisma.user.findFirst({where: {email}});
+
+    console.log("existing user", existingUser)
+
+    if(!existingUser) {
+        const username = email.split("@")[0];
+        console.log(username)
+        await prisma.user.create({data: {username, email, password:""}})
     }
 }

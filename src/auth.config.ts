@@ -4,7 +4,7 @@ import GoogleProvider from "next-auth/providers/google"
 import CredentialsProvider from "next-auth/providers/credentials"
 import { fetchUser } from "./lib/user/data"
 import {compare} from "bcryptjs"
-import { use } from "react"
+import { createGoogleUserIfNotExists } from "./lib/user/actions"
 
 
 export const authConfig = {
@@ -16,6 +16,19 @@ export const authConfig = {
         maxAge:3600
     },
     callbacks: {
+        async signIn({user, account, profile}){
+            const {email} = user
+
+        //     if(account?.provider==="google"){
+        //         if(email) {
+        //             console.log(email)
+        //             await createGoogleUserIfNotExists(email);
+        // //             return true;
+        //         }
+        //     }
+        //     return false;
+            return true
+        },
         async session({session, token}){
             session.user.id = token.id as string
             session.user.username = token.username as string
@@ -62,7 +75,7 @@ export const authConfig = {
         }),
         GoogleProvider({
             clientId:process.env.GOOGLE_CLIENT_ID,
-            clientSecret:process.env.GOOGLE_CLIENT_SECRET
+            clientSecret:process.env.GOOGLE_CLIENT_SECRET,
         })
-    ]
+    ],
 } satisfies NextAuthConfig

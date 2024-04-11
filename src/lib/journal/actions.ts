@@ -3,8 +3,7 @@
 import prisma from "@/lib/db"
 import { z } from "zod"
 import { redirect } from "next/navigation";
-import { signIn } from "@/auth";
-import { AuthError } from "next-auth";
+import { revalidatePath } from "next/cache";
 
 type FormState = {
     errors?: {
@@ -51,5 +50,6 @@ export async function createJournalEntry(prevState: FormState, formData:FormData
         return {message: 'Database Error: Failed to register'}
     }
 
-    redirect("/login")
+    revalidatePath("/journal")
+    redirect("/journal")
 }

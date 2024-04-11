@@ -29,4 +29,5 @@ model JournalEntry {
   date        DateTime  @default(now()) @db.Date
   gratefulFor     String    @db.VarChar(63)
   reason     String    @db.VarChar(63)
+  @@unique([userId, date])
 }
