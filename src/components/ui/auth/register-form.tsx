@@ -1,6 +1,6 @@
 "use client";
-import React, { useEffect } from "react";
-import { useFormState, useFormStatus } from "react-dom";
+import React from "react";
+import { useFormState } from "react-dom";
 import Link from "next/link";
 
 import {
@@ -28,12 +28,6 @@ import SubmitButton from "./submit-button";
 export default function Form() {
   const initialState = { message: null, errors: {} };
   const [state, dispatch] = useFormState(createUser, initialState);
-
-  const { pending, data, method, action } = useFormStatus();
-
-  useEffect(() => {
-    console.log("pending: ", pending);
-  }, [pending]);
 
   return (
     <Card className="mx-auto max-w-sm">

@@ -6,7 +6,6 @@ import {hash} from "bcryptjs"
 import { redirect } from "next/navigation";
 import { signIn, signOut } from "@/auth";
 import { AuthError } from "next-auth";
-import { User } from "@prisma/client";
 
 const passwordRegex = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/i);
 
@@ -84,8 +83,7 @@ export async function createUser(prevState: FormState, formData:FormData) : Prom
     }catch(error) {
         return {message: 'Database Error: Failed to register'}
     }
-
-    redirect("/login")
+    redirect("/login?justRegistered=true")
 }
 
 export async function authenticate (prevState: string | undefined, formData: FormData){

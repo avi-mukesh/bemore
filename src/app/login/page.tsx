@@ -1,17 +1,25 @@
 import React from "react";
-import { auth, signIn } from "@/auth";
+import { auth } from "@/auth";
 import Form from "@/components/ui/auth/login-form";
 import { redirect } from "next/navigation";
-import { Button } from "@/components/ui/button";
 
-export default async function LoginForm() {
+export default async function LoginForm({
+  searchParams,
+}: {
+  searchParams: { justRegistered?: string };
+}) {
   const session = await auth();
+  const justRegistered = Boolean(searchParams?.justRegistered) || false;
+
+  console.log(justRegistered);
+
   if (session) {
-    redirect("/journal");
+    redirect("/dashbaord");
   }
+
   return (
     <main className="flex items-center justify-center min-h-screen">
-      <Form />
+      <Form justRegistered={justRegistered} />
     </main>
   );
 }

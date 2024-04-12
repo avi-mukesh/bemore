@@ -4,6 +4,10 @@ import EmotionButton from "@/components/ui/dashboard/emotion-button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { fetchTodaysJournalEntryForUser } from "@/lib/journal/data";
 import { fetchTodaysMeditationForUser } from "@/lib/meditation/data";
+import {
+  fetchBookById,
+  fetchTodaysReadingEntryForUser,
+} from "@/lib/reading/data";
 import Link from "next/link";
 import React from "react";
 
@@ -12,9 +16,15 @@ export default async function page() {
 
   let todaysJournalEntry;
   let todaysMeditation;
+  let todaysReadingEntry;
+  let book;
   if (session?.user?.id) {
     todaysJournalEntry = await fetchTodaysJournalEntryForUser(session.user.id);
     todaysMeditation = await fetchTodaysMeditationForUser(session.user.id);
+    todaysReadingEntry = await fetchTodaysReadingEntryForUser(session.user.id);
+    if (todaysReadingEntry) {
+      book = await fetchBookById(todaysReadingEntry.bookId);
+    }
   }
 
   return (
@@ -55,9 +65,9 @@ export default async function page() {
               <CardContent>
                 {todaysJournalEntry ? (
                   <div className="text-2xl font-bold">
-                    my car
+                    {todaysJournalEntry.gratefulFor}
                     <p className="text-muted-foreground text-xs">
-                      because I can get everywhere with it
+                      because {todaysJournalEntry.reason}
                     </p>
                   </div>
                 ) : (
@@ -67,7 +77,7 @@ export default async function page() {
                 )}
               </CardContent>
             </Card>
-            <Card className="col-span-2">
+            <Card className="md:col-span-2">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">
                   How do I feel right now?
@@ -86,6 +96,27 @@ export default async function page() {
                     Rate your mood here
                   </p>
                 </div>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">
+                  Today I read
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                {todaysReadingEntry ? (
+                  <div className="text-2xl font-bold">
+                    {todaysReadingEntry.numPages} pages of
+                    <p className="text-muted-foreground text-xs">
+                      {book && book.title}
+                    </p>
+                  </div>
+                ) : (
+                  <div className="text-2xl font-bold text-destructive">
+                    <Link href="/dashboard/journal">Gratitude journal now</Link>
+                  </div>
+                )}
               </CardContent>
             </Card>
           </div>

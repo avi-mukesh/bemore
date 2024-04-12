@@ -10,6 +10,7 @@ import {
   Frown,
   Angry,
   Meh,
+  Menu,
 } from "lucide-react";
 
 export type Icon = LucideIcon;
@@ -25,4 +26,5 @@ export const Icons = {
   meh: Meh,
   frown: Frown,
   angry: Angry,
+  menu: Menu,
 };

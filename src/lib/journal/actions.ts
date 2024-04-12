@@ -50,6 +50,6 @@ export async function createJournalEntry(prevState: FormState, formData:FormData
         return {message: 'Database Error: Failed to register'}
     }
 
-    revalidatePath("/journal")
-    redirect("/journal")
+    revalidatePath("/dashboard/journal")
+    redirect("/dashboard/journal")
 }

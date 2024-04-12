@@ -4,7 +4,6 @@ import {
 } from "@/lib/journal/data";
 import JournalEntryCard from "./journal-entry-card";
 import JournalPagination from "./pagination";
-import { Heading } from "../heading";
 
 type PropsType = {
   userId: string;

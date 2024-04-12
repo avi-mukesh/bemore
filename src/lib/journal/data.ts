@@ -32,7 +32,7 @@ export async function fetchTodaysJournalEntryForUser(userId: string) {
   try {
     const entriesToday = await prisma.journalEntry.findMany({where: {userId, date: new Date()}})
     if(entriesToday.length === 1 ){
-      return entriesToday
+      return entriesToday[0]
     }else if(entriesToday.length > 1){
       throw new Error("Multiple journal entries found for today.")
     } else {

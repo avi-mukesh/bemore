@@ -15,13 +15,25 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { useFormState } from "react-dom";
 import { authenticate } from "@/lib/user/actions";
 import GoogleSigninButton from "./google-signin-button";
 import SubmitButton from "./submit-button";
+import { toast } from "sonner";
 
-export default function Form() {
+type PropsType = {
+  justRegistered: boolean;
+};
+
+export default function Form({ justRegistered }: PropsType) {
+  useEffect(() => {
+    console.log(justRegistered);
+    if (justRegistered) {
+      toast("Registration successful");
+    }
+  }, [justRegistered]);
+
   const [errorMessage, dispatch] = useFormState(authenticate, undefined);
 
   return (

@@ -46,6 +46,6 @@ export async function createMeditation(prevState: FormState, formData:FormData) 
         return {message: 'Database Error: Failed to register'}
     }
 
-    revalidatePath("/meditation")
-    redirect("/meditation")
+    revalidatePath("/dashboard/meditation")
+    redirect("/dashboard/meditation")
 }
