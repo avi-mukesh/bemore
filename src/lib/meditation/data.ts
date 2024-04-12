@@ -7,6 +7,7 @@ export async function fetchMeditationsForUser(userId: string) {
     try {
         const meditations = await prisma.meditation.findMany({
           where: { userId },
+          orderBy : { "date": "desc" }
         });
         return meditations;
     } catch (error) {

@@ -1,12 +1,14 @@
 "use client";
+import React, { useEffect } from "react";
+import { useFormState, useFormStatus } from "react-dom";
 import Link from "next/link";
+
 import {
   UserCircleIcon,
   AtSymbolIcon,
   KeyIcon,
-  ExclamationCircleIcon,
 } from "@heroicons/react/24/outline";
-import { Button } from "@/components/ui/button";
+
 import {
   Card,
   CardContent,
@@ -17,9 +19,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-import React, { useEffect } from "react";
-import { useFormState, useFormStatus } from "react-dom";
 import { createUser } from "@/lib/user/actions";
+
 import GoogleSigninButton from "./google-signin-button";
 import ValidationError from "./validation-error";
 import SubmitButton from "./submit-button";

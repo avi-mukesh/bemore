@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { Card, CardContent, CardHeader, CardTitle } from "./card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 function Skeleton({
   className,
@@ -17,7 +17,7 @@ export { Skeleton };
 
 function JournalEntrySkeleton() {
   return (
-    <Card className="w-[30vw] h-[180px]">
+    <Card className="w-[80vw] md:w-[30vw] h-[150px]">
       <CardHeader>
         <CardTitle>
           <Skeleton className="w-20 h-4 p-1" />
@@ -32,7 +32,7 @@ function JournalEntrySkeleton() {
 
 export function JournalEntriesSkeleton() {
   return (
-    <div className="p-4 mx-auto grid gap-2 grid-cols-3 grid-rows-2">
+    <div className="p-4 mx-auto grid gap-2 grid-cols-1 grid-flow-row md:grid-cols-3 md:grid-rows-2">
       <JournalEntrySkeleton />
       <JournalEntrySkeleton />
       <JournalEntrySkeleton />

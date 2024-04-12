@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Button } from "../button";
 import { signIn } from "next-auth/react";
 import clsx from "clsx";
+
+import { Button } from "@/components/ui/button";
 
 export default function GoogleSigninButton() {
   const [disabled, setDisabled] = useState(false);

@@ -5,12 +5,11 @@ import {
   NavigationMenuList,
   NavigationMenuItem,
   NavigationMenuLink,
-} from "../navigation-menu";
+} from "@/components/ui/navigation-menu";
 import Link from "next/link";
 import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
-import { ModeToggle } from "../../ModeToggle";
-import { signOut } from "next-auth/react";
-import { Button } from "../button";
+import { ModeToggle } from "@/components/ModeToggle";
+import { Button } from "@/components/ui/button";
 import { logout } from "@/lib/user/actions";
 
 type PropsType = {

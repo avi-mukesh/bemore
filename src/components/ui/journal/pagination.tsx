@@ -1,14 +1,15 @@
 "use client";
 
+import React from "react";
+import { usePathname, useSearchParams } from "next/navigation";
+
 import {
   Pagination,
   PaginationContent,
   PaginationEllipsis,
   PaginationItem,
   PaginationLink,
-} from "../pagination";
-import { usePathname, useSearchParams } from "next/navigation";
-import React from "react";
+} from "@/components/ui/pagination";
 
 type PropsType = {
   totalPages: number;

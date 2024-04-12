@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { Button } from "../button";
 import { useFormStatus } from "react-dom";
 import clsx from "clsx";
+import { Button } from "@/components/ui/button";
 
 type PropsType = {
   text: string;

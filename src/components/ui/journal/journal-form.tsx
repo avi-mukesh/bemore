@@ -1,13 +1,10 @@
 "use client";
 
-import React from "react";
-import { CardContent, CardFooter } from "../card";
-import { Input } from "../input";
-import { Button } from "../button";
-import { useForm } from "react-hook-form";
 import { useFormState } from "react-dom";
+import { CardContent, CardFooter } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import { createJournalEntry } from "@/lib/journal/actions";
-import { auth } from "@/auth";
 
 type PropsType = {
   userId: string;

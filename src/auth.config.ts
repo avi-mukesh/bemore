@@ -2,9 +2,9 @@ import type {NextAuthConfig} from "next-auth"
 import {z} from "zod"
 import GoogleProvider from "next-auth/providers/google"
 import CredentialsProvider from "next-auth/providers/credentials"
-import { fetchUser } from "./lib/user/data"
+import { fetchUser } from "@/lib/user/data"
 import {compare} from "bcryptjs"
-import { createGoogleUserIfNotExists } from "./lib/user/actions"
+import { createGoogleUserIfNotExists } from "@/lib/user/actions"
 
 
 export const authConfig = {
