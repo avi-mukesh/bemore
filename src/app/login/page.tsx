@@ -18,7 +18,7 @@ export default async function LoginForm({
   }
 
   return (
-    <main className="flex items-center justify-center min-h-screen">
+    <main className="flex items-center justify-center">
       <Form justRegistered={justRegistered} />
     </main>
   );

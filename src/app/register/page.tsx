@@ -8,7 +8,7 @@ export default async function LoginForm() {
   //   redirect("/");
   // }
   return (
-    <main className="flex items-center justify-center min-h-screen">
+    <main className="flex items-center justify-center">
       <Form />
     </main>
   );

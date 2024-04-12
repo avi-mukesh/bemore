@@ -6,6 +6,7 @@ import Navbar from "@/components/ui/shared/navbar";
 import clsx from "clsx";
 import { auth } from "@/auth";
 import { Toaster } from "@/components/ui/sonner";
+import Header from "@/components/ui/shared/header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,7 +30,15 @@ export default async function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <div className="flex h-screen flex-col md:flex-row md:overflow-hidden pt-7">
+            <div className="w-full flex-none md:w-64">
+              <Navbar />
+            </div>
+            <div className="flex-grow p-6 md:overflow-auto md:p-12">
+              <Header />
+              {children}
+            </div>
+          </div>
           <Toaster />
         </ThemeProvider>
       </body>

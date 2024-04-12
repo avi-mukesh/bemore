@@ -12,7 +12,7 @@ export default async function layout({
       <div className="w-full flex-none md:w-64">
         <Navbar />
       </div>
-      <div className="flex-grow p-6 md:overflow-auto md:p-12">{children}</div>
+      <div className="flex-grow p-6 md:overflow-auto md:p-8">{children}</div>
     </div>
   );
 }
