@@ -17,7 +17,7 @@ export { Skeleton };
 
 function JournalEntrySkeleton() {
   return (
-    <Card className="w-[80vw] md:w-[30vw] h-[150px]">
+    <Card className="w-[80vw] md:w-[100%] h-[160px]">
       <CardHeader>
         <CardTitle>
           <Skeleton className="w-20 h-4 p-1" />

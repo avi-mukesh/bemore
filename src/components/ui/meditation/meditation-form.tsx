@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { CardContent, CardFooter } from "../card";
+import { Card, CardContent, CardFooter } from "../card";
 import { Input } from "../input";
 import { Button } from "../button";
 import { useFormState } from "react-dom";

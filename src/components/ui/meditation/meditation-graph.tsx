@@ -87,7 +87,7 @@ export default function MeditationGraph({ meditations }: PropsType) {
   };
 
   return (
-    <div className="min-w-[80vw] min-h-[40vh] max-w-[90vw] md:max-w-[60vw] mx-auto mt-10">
+    <div className="min-w-[400px] min-h-[300px] max-w-[90%] md:max-w-[60vw] mx-auto mt-10">
       <Line className="mx" options={options} data={data} />
     </div>
   );

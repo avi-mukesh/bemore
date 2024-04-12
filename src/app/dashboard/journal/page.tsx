@@ -5,6 +5,7 @@ import { auth } from "@/auth";
 import { fetchTodaysJournalEntryForUser } from "@/lib/journal/data";
 import JournalEntries from "@/components/ui/journal/journal-entries";
 import { JournalEntriesSkeleton } from "@/components/ui/skeletons";
+import { Heading } from "@/components/ui/heading";
 
 export default async function page({
   searchParams,

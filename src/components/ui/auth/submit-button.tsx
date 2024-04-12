@@ -7,9 +7,10 @@ import { Button } from "@/components/ui/button";
 
 type PropsType = {
   text: string;
+  variant: "destructive" | "default" | "outline";
 };
 
-export default function SubmitButton({ text }: PropsType) {
+export default function SubmitButton({ text, variant }: PropsType) {
   const { pending, data, method, action } = useFormStatus();
 
   useEffect(() => {
@@ -18,6 +19,7 @@ export default function SubmitButton({ text }: PropsType) {
 
   return (
     <Button
+      variant={variant}
       type="submit"
       className={clsx("w-full mt-2", {
         "bg-muted text-muted-foreground": pending,

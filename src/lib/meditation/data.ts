@@ -28,7 +28,7 @@ export async function fetchTodaysMeditationForUser(userId: string) {
   try {
     const meditationsToday = await prisma.meditation.findMany({where: {userId, date: new Date()}})
     if(meditationsToday.length === 1 ){
-      return meditationsToday
+      return meditationsToday[0]
     }else if(meditationsToday.length > 1){
       throw new Error("Multiple meditations found for today.")
     } else {

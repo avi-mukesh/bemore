@@ -1,54 +1,30 @@
-"use client";
 import React from "react";
-import {
-  NavigationMenu,
-  NavigationMenuList,
-  NavigationMenuItem,
-  NavigationMenuLink,
-} from "@/components/ui/navigation-menu";
+
 import Link from "next/link";
-import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
-import { ModeToggle } from "@/components/ModeToggle";
-import { Button } from "@/components/ui/button";
-import { logout } from "@/lib/user/actions";
+import Navlinks from "./navlinks";
+import { signOut } from "@/auth";
+import SubmitButton from "../auth/submit-button";
 
-type PropsType = {
-  username: string | null | undefined;
-};
-
-export default function Navbar({ username }: PropsType) {
-  const handleLogout = async (e: FormData) => {
-    logout();
-  };
-
+export default function Navbar() {
   return (
-    <NavigationMenu className="fixed my-2 mx-2 w-full">
-      <NavigationMenuList>
-        {username && (
-          <NavigationMenu>
-            <form action={handleLogout}>
-              <Button variant="destructive">Log out</Button>
-            </form>
-          </NavigationMenu>
-        )}
-        <NavigationMenuItem>
-          <ModeToggle />
-        </NavigationMenuItem>
-        {username && (
-          <NavigationMenuItem>
-            <Link href="journal" legacyBehavior passHref>
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                Journal
-              </NavigationMenuLink>
-            </Link>
-            <Link href="meditation" legacyBehavior passHref>
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                Meditation
-              </NavigationMenuLink>
-            </Link>
-          </NavigationMenuItem>
-        )}
-      </NavigationMenuList>
-    </NavigationMenu>
+    <div className="flex h-full flex-col px-3 py-4 md:px-2">
+      <Link
+        className="mb-2 flex h-20 items-end justify-start rounded-md p-4 md:h-400"
+        href="/"
+      >
+        <div className="w-32 text-white md:w-40"></div>
+      </Link>
+      <div className="flex-grow flex-row justify-between space-x-2 md:flex-col md:space-x-0 md:space-y-2">
+        <Navlinks />
+        <form
+          action={async () => {
+            "use server";
+            await signOut();
+          }}
+        >
+          <SubmitButton variant="destructive" text="Log out" />
+        </form>
+      </div>
+    </div>
   );
 }

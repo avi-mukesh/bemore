@@ -1,7 +1,7 @@
 "use client";
 
 import { useFormState } from "react-dom";
-import { CardContent, CardFooter } from "@/components/ui/card";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { createJournalEntry } from "@/lib/journal/actions";

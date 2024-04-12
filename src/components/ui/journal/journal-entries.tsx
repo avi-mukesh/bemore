@@ -4,6 +4,7 @@ import {
 } from "@/lib/journal/data";
 import JournalEntryCard from "./journal-entry-card";
 import JournalPagination from "./pagination";
+import { Heading } from "../heading";
 
 type PropsType = {
   userId: string;
@@ -18,7 +19,7 @@ export default async function JournalEntries({
   const totalPages = await fetchJournalEntriesForUserPages(userId);
 
   return (
-    <div className="pt-8 md:min-w-[100vw]">
+    <>
       <div className="p-4 mx-auto grid gap-2 grid-cols-1 grid-flow-row md:grid-cols-3 md:grid-rows-2">
         {entries?.map((entry) => (
           <JournalEntryCard key={entry.id} entry={entry} />
@@ -27,6 +28,6 @@ export default async function JournalEntries({
       <div className="mt-5 flex w-full justify-center">
         {totalPages && <JournalPagination totalPages={totalPages} />}
       </div>
-    </div>
+    </>
   );
 }

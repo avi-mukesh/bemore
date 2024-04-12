@@ -40,14 +40,13 @@ export const authConfig = {
         },
         authorized({auth, request:{nextUrl}}){
             const isLoggedIn = !!auth?.user
-            const isOnJournal = nextUrl.pathname.startsWith("/journal")
-            const isOnMeditation = nextUrl.pathname.startsWith("/meditation")
+            const isOnDashboard = nextUrl.pathname.startsWith("/dashboard")
 
-            if(isOnJournal || isOnMeditation){
+            if(isOnDashboard){
                 if(isLoggedIn) return true;
                 return false;
             }else if(isLoggedIn) {
-                return Response.redirect(new URL("/journal", nextUrl));
+                return Response.redirect(new URL("/dashboard", nextUrl));
             }
             return true
         },

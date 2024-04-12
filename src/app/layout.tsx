@@ -19,8 +19,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await auth();
-
   return (
     <html lang="en">
       <body className={clsx("relative", inter.className)}>
@@ -30,7 +28,6 @@ export default async function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Navbar username={session?.user?.email} />
           {children}
         </ThemeProvider>
       </body>
