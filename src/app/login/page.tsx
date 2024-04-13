@@ -4,6 +4,12 @@ import Form from "@/components/ui/auth/login-form";
 import { redirect } from "next/navigation";
 import AnimatedText from "@/components/ui/animated-text";
 
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Login",
+};
+
 export default async function LoginForm({
   searchParams,
 }: {

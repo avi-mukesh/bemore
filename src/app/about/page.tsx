@@ -1,6 +1,10 @@
 import AnimatedText from "@/components/ui/animated-text";
 import React from "react";
+import { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "About",
+};
 export default function page() {
   return (
     <div className="flex flex-col items-center gap-2">

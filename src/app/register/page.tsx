@@ -2,7 +2,11 @@ import React from "react";
 import { auth } from "@/auth";
 import Form from "@/components/ui/auth/register-form";
 import { redirect } from "next/navigation";
+import { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "Register",
+};
 export default async function LoginForm() {
   const session = await auth();
   if (session) {

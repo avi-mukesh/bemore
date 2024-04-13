@@ -10,6 +10,11 @@ import {
 } from "@/lib/reading/data";
 import Link from "next/link";
 import React from "react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Dashboard",
+};
 
 export default async function page() {
   const session = await auth();

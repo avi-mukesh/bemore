@@ -10,6 +10,6 @@ export async function fetchUser(username: string) {
         return null;
     } catch (error) {
       console.error('Database Error:', error);
-      throw new Error(`No user with username ${username} found`);
+      // throw new Error(`No user with username ${username} found`);
     }
 }
