@@ -2,7 +2,7 @@ import ReadingEntries from "@/components/ui/reading/reading-entries";
 import React, { Suspense } from "react";
 import { fetchBooks, fetchTodaysReadingEntryForUser } from "@/lib/reading/data";
 import { auth } from "@/auth";
-import { JournalEntriesSkeleton } from "@/components/ui/skeletons";
+import { EntriesSkeleton } from "@/components/ui/skeletons";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import ReadingForm from "@/components/ui/reading/reading-form";
 
@@ -22,7 +22,7 @@ export default async function page({
     );
     if (todaysReadingEntry) {
       return (
-        <Suspense fallback={<JournalEntriesSkeleton />}>
+        <Suspense fallback={<EntriesSkeleton />}>
           <ReadingEntries userId={session.user.id} currentPage={currentPage} />
         </Suspense>
       );

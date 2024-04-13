@@ -19,7 +19,7 @@ import React, { useEffect } from "react";
 import { useFormState } from "react-dom";
 import { authenticate } from "@/lib/user/actions";
 import GoogleSigninButton from "./google-signin-button";
-import SubmitButton from "./submit-button";
+import SubmitButton from "@/components/ui/shared/submit-button";
 import { toast } from "sonner";
 
 type PropsType = {
@@ -28,7 +28,6 @@ type PropsType = {
 
 export default function Form({ justRegistered }: PropsType) {
   useEffect(() => {
-    console.log(justRegistered);
     if (justRegistered) {
       toast("Registration successful");
     }
@@ -77,7 +76,7 @@ export default function Form({ justRegistered }: PropsType) {
             <p className="-text-red-500 text-sm">{errorMessage}</p>
           </div>
         )}
-        <GoogleSigninButton />
+        {/* <GoogleSigninButton /> */}
         <div className="mt-4 text-center text-sm">
           Already have an account?{" "}
           <Link href="/register" className="underline">

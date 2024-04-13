@@ -46,7 +46,6 @@ export async function fetchTodaysReadingEntryForUser(userId: string) {
 export async function fetchBooks() {
     try {
       const books = await prisma.book.findMany();
-      console.log(books)
       return books;
     }catch(error) {
       console.error('Database Error:', error);

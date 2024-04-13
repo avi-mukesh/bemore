@@ -15,7 +15,7 @@ function Skeleton({
 
 export { Skeleton };
 
-function JournalEntrySkeleton() {
+function EntrySkeleton() {
   return (
     <Card className="w-[80vw] md:w-[100%] h-[160px]">
       <CardHeader>
@@ -30,15 +30,15 @@ function JournalEntrySkeleton() {
   );
 }
 
-export function JournalEntriesSkeleton() {
+export function EntriesSkeleton() {
   return (
     <div className="p-4 mx-auto grid gap-2 grid-cols-1 grid-flow-row md:grid-cols-3 md:grid-rows-2">
-      <JournalEntrySkeleton />
-      <JournalEntrySkeleton />
-      <JournalEntrySkeleton />
-      <JournalEntrySkeleton />
-      <JournalEntrySkeleton />
-      <JournalEntrySkeleton />
+      <EntrySkeleton />
+      <EntrySkeleton />
+      <EntrySkeleton />
+      <EntrySkeleton />
+      <EntrySkeleton />
+      <EntrySkeleton />
     </div>
   );
 }

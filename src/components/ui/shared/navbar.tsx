@@ -2,7 +2,7 @@ import React from "react";
 
 import Navlinks from "./navlinks";
 import { auth, signOut } from "@/auth";
-import SubmitButton from "../auth/submit-button";
+import SubmitButton from "@/components/ui/shared/submit-button";
 import Link from "next/link";
 import { ModeToggle } from "@/components/ModeToggle";
 

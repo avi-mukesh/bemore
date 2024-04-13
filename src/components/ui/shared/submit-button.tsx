@@ -13,10 +13,6 @@ type PropsType = {
 export default function SubmitButton({ text, variant = "default" }: PropsType) {
   const { pending, data, method, action } = useFormStatus();
 
-  useEffect(() => {
-    console.log("pending:", pending);
-  }, [pending]);
-
   return (
     <Button
       variant={variant}

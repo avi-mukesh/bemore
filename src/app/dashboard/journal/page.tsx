@@ -4,7 +4,7 @@ import JournalForm from "@/components/ui/journal/journal-form";
 import { auth } from "@/auth";
 import { fetchTodaysJournalEntryForUser } from "@/lib/journal/data";
 import JournalEntries from "@/components/ui/journal/journal-entries";
-import { JournalEntriesSkeleton } from "@/components/ui/skeletons";
+import { EntriesSkeleton } from "@/components/ui/skeletons";
 
 export default async function page({
   searchParams,
@@ -20,7 +20,7 @@ export default async function page({
     );
     if (todaysJournalEntry) {
       return (
-        <Suspense fallback={<JournalEntriesSkeleton />}>
+        <Suspense fallback={<EntriesSkeleton />}>
           <JournalEntries userId={session.user.id} currentPage={currentPage} />
         </Suspense>
       );

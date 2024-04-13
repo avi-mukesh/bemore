@@ -5,7 +5,6 @@ export async function fetchUser(username: string) {
     try {
         const user = await prisma.user.findFirst({where:{username}});
         if(user) {
-          console.log("fetched user", user)
           return user
         };
         return null;

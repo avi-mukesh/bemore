@@ -28,7 +28,6 @@ export async function createMeditation(prevState: FormState, formData:FormData) 
     })
 
     if(!validatedFields.success){
-        console.log(validatedFields.error.flatten())
         return {
             errors: validatedFields.error.flatten().fieldErrors,
             message: "Invalid data. Failed to create meditation."

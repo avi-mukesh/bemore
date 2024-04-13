@@ -87,7 +87,6 @@ export async function createUser(prevState: FormState, formData:FormData) : Prom
 }
 
 export async function authenticate (prevState: string | undefined, formData: FormData){
-    console.log("signing in with", formData.get("username"))
     try {
         await signIn("credentials", formData)
     }catch(error){
@@ -114,11 +113,9 @@ export async function logout() {
 export async function createGoogleUserIfNotExists(email: string) {
     const existingUser = await prisma.user.findFirst({where: {email}});
 
-    console.log("existing user", existingUser)
 
     if(!existingUser) {
         const username = email.split("@")[0];
-        console.log(username)
         await prisma.user.create({data: {username, email, password:""}})
     }
 }

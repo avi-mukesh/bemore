@@ -22,8 +22,8 @@ import { Label } from "@/components/ui/label";
 import { createUser } from "@/lib/user/actions";
 
 import GoogleSigninButton from "./google-signin-button";
-import ValidationError from "./validation-error";
-import SubmitButton from "./submit-button";
+import ValidationError from "@/components/ui/auth/validation-error";
+import SubmitButton from "@/components/ui/shared/submit-button";
 
 export default function Form() {
   const initialState = { message: null, errors: {} };
@@ -105,7 +105,7 @@ export default function Form() {
           </div>
           <SubmitButton text="Create account" />
         </form>
-        <GoogleSigninButton />
+        {/* <GoogleSigninButton /> */}
         <div className="mt-4 text-center text-sm">
           Already have an account?{" "}
           <Link href="/login" className="underline">

@@ -114,7 +114,7 @@ export default async function page() {
                   </div>
                 ) : (
                   <div className="text-2xl font-bold text-destructive">
-                    <Link href="/dashboard/journal">Read now</Link>
+                    <Link href="/dashboard/reading">Read now</Link>
                   </div>
                 )}
               </CardContent>

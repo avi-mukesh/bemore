@@ -23,7 +23,6 @@ const ReadingFormSchema = z.object({
 const CreateReadingEntry = ReadingFormSchema.omit({id: true})
 
 export async function createReadingEntry(prevState: ReadingFormState, formData:FormData) : Promise<ReadingFormState>{
-    console.log("creating reading entry")
     const validatedFields = CreateReadingEntry.safeParse({
         bookId: formData.get("bookId"),
         numPages: formData.get("numPages"),
@@ -31,7 +30,6 @@ export async function createReadingEntry(prevState: ReadingFormState, formData:F
     })
 
     if(!validatedFields.success){
-        console.log(validatedFields.error.flatten())
         return {
             errors: validatedFields.error.flatten().fieldErrors,
             message: "Invalid data. Failed to register."
@@ -71,14 +69,12 @@ const BookFormSchema = z.object({
 const CreateBook = BookFormSchema.omit({id: true})
 
 export async function createBook(prevState: BookFormState, formData: FormData) : Promise<BookFormState>{
-    console.log("creating book")
 
     const validatedFields = CreateBook.safeParse({
         title: formData.get("title")
     })
 
     if(!validatedFields.success){
-        console.log(validatedFields.error.flatten())
         return {
             errors: validatedFields.error.flatten().fieldErrors,
             message: "Invalid data. Failed to create book."

@@ -23,15 +23,14 @@ const FormSchema = z.object({
 const CreateJournalEntry = FormSchema.omit({id: true})
 
 export async function createJournalEntry(prevState: FormState, formData:FormData) : Promise<FormState>{
-
     const validatedFields = CreateJournalEntry.safeParse({
         gratefulFor: formData.get("gratefulFor"),
         reason: formData.get("reason"),
         userId: formData.get("userId")
     })
 
+
     if(!validatedFields.success){
-        console.log(validatedFields.error.flatten())
         return {
             errors: validatedFields.error.flatten().fieldErrors,
             message: "Invalid data. Failed to register."
@@ -47,7 +46,7 @@ export async function createJournalEntry(prevState: FormState, formData:FormData
             reason,
         }})
     }catch(error) {
-        return {message: 'Database Error: Failed to register'}
+        return {message: 'Database Error: Failed to create journal entry'}
     }
 
     revalidatePath("/dashboard/journal")

@@ -11,8 +11,6 @@ export default async function LoginForm({
   const session = await auth();
   const justRegistered = Boolean(searchParams?.justRegistered) || false;
 
-  console.log(justRegistered);
-
   if (session) {
     redirect("/dashbaord");
   }
