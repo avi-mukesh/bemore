@@ -42,7 +42,7 @@ export default async function RootLayout({
               <div className="w-full flex-none md:w-64">
                 <Navbar isLoggedIn={isLoggedIn} />
               </div>
-              <div className="flex-grow p-6 md:overflow-auto md:p-12">
+              <div className="flex-grow p-6 pt-10 md:overflow-auto md:p-12">
                 <Header username={session?.user?.username} />
                 {children}
               </div>
