@@ -17,9 +17,9 @@ function Word({ isActive, word }: { isActive: boolean; word: string }) {
     return (
       <motion.span
         className="inline-block font-extrabold capitalize justify-self-end"
-        initial={{ x: 100, opacity: 0 }}
+        initial={{ x: 70, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
-        exit={{ x: -100, opacity: 0 }}
+        exit={{ x: -70, opacity: 0 }}
       >
         {word}
       </motion.span>
@@ -43,7 +43,7 @@ export default function AnimatedText() {
   }, [activeIndex, nextWord]);
 
   return (
-    <div className="text-5xl font-light text-center">
+    <div className="mt-5 md:mt-0 text-5xl font-light text-center">
       <p className="justify-self-start">Be More</p>
       <AnimatePresence>
         {words.map((word) => (

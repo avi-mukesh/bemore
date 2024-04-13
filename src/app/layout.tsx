@@ -7,6 +7,7 @@ import clsx from "clsx";
 import { auth } from "@/auth";
 import { Toaster } from "@/components/ui/sonner";
 import Header from "@/components/ui/shared/header";
+import NavbarProvider from "@/context/NavbarContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,6 +25,9 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await auth();
+  const isLoggedIn = !!session?.user?.id;
+
   return (
     <html lang="en">
       <body className={clsx("relative", inter.className)}>
@@ -33,15 +37,17 @@ export default async function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="flex h-screen flex-col md:flex-row md:overflow-hidden pt-7">
-            <div className="w-full flex-none md:w-64">
-              <Navbar />
+          <NavbarProvider>
+            <div className="flex h-screen flex-col md:flex-row md:overflow-hidden pt-7">
+              <div className="w-full flex-none md:w-64">
+                <Navbar isLoggedIn={isLoggedIn} />
+              </div>
+              <div className="flex-grow p-6 md:overflow-auto md:p-12">
+                <Header username={session?.user?.username} />
+                {children}
+              </div>
             </div>
-            <div className="flex-grow p-6 md:overflow-auto md:p-12">
-              <Header />
-              {children}
-            </div>
-          </div>
+          </NavbarProvider>
           <Toaster />
         </ThemeProvider>
       </body>

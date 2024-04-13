@@ -119,3 +119,7 @@ export async function createGoogleUserIfNotExists(email: string) {
         await prisma.user.create({data: {username, email, password:""}})
     }
 }
+
+export async function _signOut() {
+    await signOut()
+}
