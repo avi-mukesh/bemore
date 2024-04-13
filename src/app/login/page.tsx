@@ -2,6 +2,7 @@ import React from "react";
 import { auth } from "@/auth";
 import Form from "@/components/ui/auth/login-form";
 import { redirect } from "next/navigation";
+import AnimatedText from "@/components/ui/animated-text";
 
 export default async function LoginForm({
   searchParams,
@@ -16,7 +17,8 @@ export default async function LoginForm({
   }
 
   return (
-    <main className="flex items-center justify-center">
+    <main className="flex flex-col h-[100%] items-center justify-around">
+      <AnimatedText />
       <Form justRegistered={justRegistered} />
     </main>
   );

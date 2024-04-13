@@ -6,7 +6,7 @@ export const {handlers:{GET, POST}, auth, signIn, signOut} = NextAuth({
     ...authConfig,
     callbacks: {
         ...authConfig.callbacks,
-        async signIn({user, account, profile}){
+        async signIn({user, account}){
             const {email} = user
 
             if(account?.provider==="google"){
