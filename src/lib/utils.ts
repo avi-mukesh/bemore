@@ -17,3 +17,5 @@ export const formatDateToLocal = (
   const formatter = new Intl.DateTimeFormat(locale, {dateStyle:"long"});
   return formatter.format(dateObj);
 };
+
+export type Mood = "angry"| "frown"| "meh"|"smile"| "laugh"

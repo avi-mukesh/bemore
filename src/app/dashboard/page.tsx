@@ -11,6 +11,8 @@ import {
 import Link from "next/link";
 import React from "react";
 import { Metadata } from "next";
+import { Mood } from "@/lib/utils";
+import EmotionButtons from "@/components/ui/dashboard/emotion-buttons";
 
 export const metadata: Metadata = {
   title: "Dashboard",
@@ -90,13 +92,9 @@ export default async function page() {
               </CardHeader>
               <CardContent>
                 <div className="text-2xl">
-                  <div className="flex gap-2 justify-between">
-                    <EmotionButton variant="angry" />
-                    <EmotionButton variant="frown" />
-                    <EmotionButton variant="meh" />
-                    <EmotionButton variant="smile" />
-                    <EmotionButton variant="laugh" />
-                  </div>
+                  {session?.user?.id && (
+                    <EmotionButtons userId={session.user.id} />
+                  )}
                   <p className="text-muted-foreground text-xs mt-3 text-center">
                     Rate your mood here
                   </p>

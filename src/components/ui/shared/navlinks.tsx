@@ -69,7 +69,7 @@ export default function Navlinks({ isLoggedIn }: PropsType) {
           <NavigationMenuList>
             {generateNavLinks(pathname, dashLinks)}
           </NavigationMenuList>
-          <Separator className="my-4" />
+          <Separator className="my-2" />
         </>
       )}
       <NavigationMenuList>
@@ -77,7 +77,7 @@ export default function Navlinks({ isLoggedIn }: PropsType) {
       </NavigationMenuList>
       {!isLoggedIn && (
         <>
-          <Separator className="my-4" />
+          <Separator className="my-2" />
           <NavigationMenuList>
             {generateNavLinks(pathname, loginLink)}
           </NavigationMenuList>
