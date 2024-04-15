@@ -6,7 +6,7 @@ import {
 } from "@radix-ui/react-navigation-menu";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import {
   NavigationMenuItem,
   NavigationMenuLink,
@@ -41,46 +41,41 @@ type LinkType = {
   icon: LucideIcon;
 };
 
-function generateNavLinks(pathname: string, links: LinkType[]) {
-  return links.map((link) => {
-    const LinkIcon = link.icon;
-    return (
-      <NavigationMenuItem key={link.name}>
-        <Link href={link.href} legacyBehavior passHref>
-          <NavigationMenuLink
-            className={`${navigationMenuTriggerStyle()} flex justify-end gap-4 !w-full`}
-            active={pathname === link.href}
-          >
-            <LinkIcon className="w-6" />
-            <p className="block">{link.name}</p>
-          </NavigationMenuLink>
-        </Link>
-      </NavigationMenuItem>
-    );
-  });
-}
-
 export default function Navlinks({ isLoggedIn }: PropsType) {
   const pathname = usePathname();
+
+  function generateNavLinks(links: LinkType[]) {
+    return links.map((link) => {
+      const LinkIcon = link.icon;
+      return (
+        <NavigationMenuItem key={link.name}>
+          <Link href={link.href} legacyBehavior passHref>
+            <NavigationMenuLink
+              className={`${navigationMenuTriggerStyle()} flex justify-end gap-4 !w-full`}
+              active={pathname === link.href}
+            >
+              <LinkIcon className="w-6" />
+              <p className="block">{link.name}</p>
+            </NavigationMenuLink>
+          </Link>
+        </NavigationMenuItem>
+      );
+    });
+  }
+
   return (
     <NavigationMenu>
       {isLoggedIn && (
         <>
-          <NavigationMenuList>
-            {generateNavLinks(pathname, dashLinks)}
-          </NavigationMenuList>
+          <NavigationMenuList>{generateNavLinks(dashLinks)}</NavigationMenuList>
           <Separator className="my-2" />
         </>
       )}
-      <NavigationMenuList>
-        {generateNavLinks(pathname, otherLinks)}
-      </NavigationMenuList>
+      <NavigationMenuList>{generateNavLinks(otherLinks)}</NavigationMenuList>
       {!isLoggedIn && (
         <>
           <Separator className="my-2" />
-          <NavigationMenuList>
-            {generateNavLinks(pathname, loginLink)}
-          </NavigationMenuList>
+          <NavigationMenuList>{generateNavLinks(loginLink)}</NavigationMenuList>
         </>
       )}
     </NavigationMenu>

@@ -16,10 +16,6 @@ type PropsType = {
 export default function Navbar({ isLoggedIn }: PropsType) {
   const { isNavbarOpen } = useNavbar();
 
-  useEffect(() => {
-    console.log("chanigng navbar hehaha", isNavbarOpen);
-  }, [isNavbarOpen]);
-
   return (
     <div
       className={clsx(

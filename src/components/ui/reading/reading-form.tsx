@@ -1,7 +1,7 @@
 "use client";
 
 import { createReadingEntry } from "@/lib/reading/actions";
-import React from "react";
+import React, { useState } from "react";
 import { useFormState } from "react-dom";
 import { CardContent, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -16,6 +16,14 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import NewBookDialog from "@/components/ui/reading/new-book-dialog";
+import { Popover, PopoverContent, PopoverTrigger } from "../popover";
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+} from "../command";
 
 type PropsType = {
   userId: string;
@@ -49,6 +57,7 @@ export default function ReadingForm({ userId, existingBooks }: PropsType) {
               <p className="text-xl font-semibold leading-none tracking-tight">
                 pages of...
               </p>
+
               <Select name="bookId">
                 <SelectTrigger>
                   <SelectValue placeholder="Book" />
