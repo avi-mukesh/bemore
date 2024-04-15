@@ -23,7 +23,7 @@ export default async function LoginForm({
   }
 
   return (
-    <main className="flex flex-col h-[100%] items-center justify-around">
+    <main className="flex flex-col h-[100%] items-center justify-center gap-4">
       <AnimatedText />
       <Form justRegistered={justRegistered} />
     </main>

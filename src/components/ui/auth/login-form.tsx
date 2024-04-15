@@ -91,7 +91,7 @@ export default function Form({ justRegistered }: PropsType) {
         )}
         {/* <GoogleSigninButton /> */}
         <div className="mt-4 text-center text-sm">
-          Already have an account?{" "}
+          Don&apos;t have an account?{" "}
           <Link href="/register" className="underline">
             Sign up
           </Link>

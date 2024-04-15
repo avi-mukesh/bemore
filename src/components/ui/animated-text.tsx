@@ -43,7 +43,7 @@ export default function AnimatedText() {
   }, [activeIndex, nextWord]);
 
   return (
-    <div className="mb-14 md:mt-0 text-5xl font-light text-center">
+    <div className="text-5xl font-light text-center">
       <p className="justify-self-start">Be More</p>
       <AnimatePresence>
         {words.map((word) => (
