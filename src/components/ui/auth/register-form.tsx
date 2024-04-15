@@ -36,9 +36,8 @@ export default function Form() {
   const {
     register,
     getFieldState,
-    formState: { errors, isValid, isDirty },
+    formState: { errors, isValid },
     getValues,
-    setError,
   } = useForm({ mode: "all" });
 
   console.log(Object.keys(errors));
@@ -65,9 +64,10 @@ export default function Form() {
               />
               <UserCircleIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
             </div>
-            {errors.username?.message ? (
+            {getFieldState("username").isTouched &&
+            getFieldState("username").invalid ? (
               <ClientValidationError
-                message={errors.username.message.toString()}
+                message={errors.username?.message!.toString() as string}
                 field="username"
               />
             ) : state.errors?.username ? (
@@ -97,9 +97,10 @@ export default function Form() {
               />
               <AtSymbolIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
             </div>
-            {errors.email?.message ? (
+            {getFieldState("email").isTouched &&
+            getFieldState("email").invalid ? (
               <ClientValidationError
-                message={errors.email?.message.toString()}
+                message={errors.email?.message!.toString() as string}
                 field="email"
               />
             ) : state.errors?.email ? (
@@ -129,9 +130,10 @@ export default function Form() {
               />
               <KeyIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
             </div>
-            {errors.password?.message ? (
+            {getFieldState("password").isTouched &&
+            getFieldState("password").invalid ? (
               <ClientValidationError
-                message={errors.password?.message.toString()}
+                message={errors.password?.message!.toString() as string}
                 field="email"
               />
             ) : state.errors?.password ? (
@@ -146,12 +148,6 @@ export default function Form() {
               <Input
                 {...register("confirmPassword", {
                   validate: (confPass) => {
-                    if (confPass !== getValues("password")) {
-                      setError("confirmPassword", {
-                        type: "custom",
-                        message: "Passwords must match custom!",
-                      });
-                    }
                     return (
                       confPass === getValues("password") ||
                       "Passwords must match!"
@@ -166,9 +162,10 @@ export default function Form() {
               />
               <KeyIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
             </div>
-            {errors.confirmPassword?.message ? (
+            {getFieldState("confirmPassword").isTouched &&
+            getFieldState("confirmPassword").invalid ? (
               <ClientValidationError
-                message={errors.confirmPassword?.message.toString()}
+                message={errors.confirmPassword?.message!.toString() as string}
                 field="email"
               />
             ) : state.errors?.confirmPassword ? (

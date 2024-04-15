@@ -15,7 +15,7 @@ type FormState = {
 const FormSchema = z.object({
     id: z.string(),
     userId: z.string(),
-    duration: z.coerce.number(),
+    duration: z.coerce.number().min(1),
 })
 
 const CreateMeditation = FormSchema.omit({id: true})

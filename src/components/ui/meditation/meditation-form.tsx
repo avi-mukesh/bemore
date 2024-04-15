@@ -6,6 +6,8 @@ import { Input } from "../input";
 import { Button } from "../button";
 import { useFormState } from "react-dom";
 import { createMeditation } from "@/lib/meditation/actions";
+import clsx from "clsx";
+import { useForm } from "react-hook-form";
 
 type PropsType = {
   userId: string;
@@ -14,6 +16,11 @@ type PropsType = {
 export default function MeditationForm({ userId }: PropsType) {
   const initialState = { message: null, errors: {} };
   const [state, dispatch] = useFormState(createMeditation, initialState);
+
+  const {
+    register,
+    formState: { isValid },
+  } = useForm();
 
   return (
     <form action={dispatch}>
@@ -24,8 +31,13 @@ export default function MeditationForm({ userId }: PropsType) {
             Today I meditated for
           </p>
           <Input
+            {...register("duration", {
+              required: true,
+              min: 1,
+              max: 720,
+            })}
             min={1}
-            max={60}
+            max={720}
             type="number"
             name="duration"
             className="text-md font-medium leading-none"
@@ -37,7 +49,14 @@ export default function MeditationForm({ userId }: PropsType) {
         </div>
       </CardContent>
       <CardFooter>
-        <Button type="submit" variant="default" className="mx-auto">
+        <Button
+          type="submit"
+          variant="default"
+          className={clsx("mx-auto", {
+            "bg-muted text-muted-foreground": !isValid,
+          })}
+          disabled={!isValid}
+        >
           Save
         </Button>
       </CardFooter>

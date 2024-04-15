@@ -12,7 +12,7 @@ export default function layout({ children }: { children: React.ReactNode }) {
       <div className="flex">
         <Heading
           title="Meditation"
-          description="Medidate for 5 minutes everyday."
+          description="Meditate for 5 minutes everyday."
         />
       </div>
       {children}

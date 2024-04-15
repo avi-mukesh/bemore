@@ -9,7 +9,7 @@ type PropsType = {
   text: string;
   variant?: "destructive" | "default" | "outline";
   className?: string;
-  disabled: boolean;
+  disabled?: boolean;
 };
 
 export default function SubmitButton(props: PropsType) {
