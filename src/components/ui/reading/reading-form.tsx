@@ -16,14 +16,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import NewBookDialog from "@/components/ui/reading/new-book-dialog";
-import { Popover, PopoverContent, PopoverTrigger } from "../popover";
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-} from "../command";
+import { useForm } from "react-hook-form";
+import clsx from "clsx";
 
 type PropsType = {
   userId: string;
@@ -33,6 +27,11 @@ type PropsType = {
 export default function ReadingForm({ userId, existingBooks }: PropsType) {
   const initialState = { message: null, errors: {} };
   const [state, dispatch] = useFormState(createReadingEntry, initialState);
+
+  const {
+    register,
+    formState: { isValid },
+  } = useForm({ mode: "all" });
 
   return (
     <>
@@ -45,6 +44,7 @@ export default function ReadingForm({ userId, existingBooks }: PropsType) {
                 Today I read...
               </p>
               <Input
+                {...register("numPages", { required: true, min: 1, max: 5000 })}
                 min="1"
                 max="10000"
                 type="number"
@@ -58,7 +58,12 @@ export default function ReadingForm({ userId, existingBooks }: PropsType) {
                 pages of...
               </p>
 
-              <Select name="bookId">
+              <Select
+                {...register(
+                  "bookId"
+                  // , { required: true } // this doesn't work
+                )}
+              >
                 <SelectTrigger>
                   <SelectValue placeholder="Book" />
                 </SelectTrigger>
@@ -76,8 +81,15 @@ export default function ReadingForm({ userId, existingBooks }: PropsType) {
           </div>
         </CardContent>
         <CardFooter>
-          <Button type="submit" variant="default" className="mx-auto">
-            Enter
+          <Button
+            type="submit"
+            variant="default"
+            className={clsx("mx-auto", {
+              "bg-muted text-muted-foreground": !isValid,
+            })}
+            disabled={!isValid}
+          >
+            Save
           </Button>
         </CardFooter>
       </form>

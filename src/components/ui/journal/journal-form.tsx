@@ -5,6 +5,8 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { createJournalEntry } from "@/lib/journal/actions";
+import { useForm } from "react-hook-form";
+import clsx from "clsx";
 
 type PropsType = {
   userId: string;
@@ -13,6 +15,11 @@ type PropsType = {
 export default function JournalForm({ userId }: PropsType) {
   const initialState = { message: null, errors: {} };
   const [state, dispatch] = useFormState(createJournalEntry, initialState);
+
+  const {
+    register,
+    formState: { isValid },
+  } = useForm();
 
   return (
     <form action={dispatch}>
@@ -24,6 +31,13 @@ export default function JournalForm({ userId }: PropsType) {
               Today I am grateful for...
             </p>
             <Input
+              {...register("gratefulFor", {
+                required: true,
+                minLength: 1,
+                maxLength: 63,
+              })}
+              minLength={1}
+              maxLength={63}
               name="gratefulFor"
               className="text-md font-medium leading-none"
               placeholder="pizza"
@@ -34,6 +48,13 @@ export default function JournalForm({ userId }: PropsType) {
               because...
             </p>
             <Input
+              {...register("reason", {
+                required: true,
+                minLength: 1,
+                maxLength: 63,
+              })}
+              minLength={1}
+              maxLength={63}
               name="reason"
               className="text-md font-medium leading-none"
               placeholder="it is delicious"
@@ -42,8 +63,15 @@ export default function JournalForm({ userId }: PropsType) {
         </div>
       </CardContent>
       <CardFooter>
-        <Button type="submit" variant="default" className="mx-auto">
-          Enter
+        <Button
+          type="submit"
+          variant="default"
+          className={clsx("mx-auto", {
+            "bg-muted text-muted-foreground": !isValid,
+          })}
+          disabled={!isValid}
+        >
+          Save
         </Button>
       </CardFooter>
     </form>
