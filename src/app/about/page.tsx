@@ -33,8 +33,9 @@ export default function page() {
             href="mailto:avimukesh10@gmail.com"
             className="text-blue-500 hover:underline underline-offset-4"
           >
-            email.
+            email
           </a>
+          .
         </p>
       </div>
     </div>

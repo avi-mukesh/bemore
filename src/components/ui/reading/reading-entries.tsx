@@ -2,9 +2,8 @@ import {
   fetchReadingEntriesForUser,
   fetchReadingEntriesForUserPages,
 } from "@/lib/reading/data";
-import ReadingEntryCard from "./reading-entry-card";
-import ReadingPagination from "./pagination";
-import JournalPagination from "../journal/pagination";
+import ReadingEntryCard from "@/components/ui/reading/reading-entry-card";
+import Pagination from "@/components/ui/shared/pagination";
 
 type PropsType = {
   userId: string;
@@ -26,7 +25,7 @@ export default async function ReadingEntries({
         ))}
       </div>
       <div className="mt-5 flex w-full justify-center">
-        {totalPages && <JournalPagination totalPages={totalPages} />}
+        {totalPages && <Pagination totalPages={totalPages} />}
       </div>
     </>
   );

@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { createJournalEntry } from "@/lib/journal/actions";
 import { useForm } from "react-hook-form";
 import clsx from "clsx";
+import CardFooterSave from "../shared/card-footer-save";
 
 type PropsType = {
   userId: string;
@@ -62,18 +63,7 @@ export default function JournalForm({ userId }: PropsType) {
           </div>
         </div>
       </CardContent>
-      <CardFooter>
-        <Button
-          type="submit"
-          variant="default"
-          className={clsx("mx-auto", {
-            "bg-muted text-muted-foreground": !isValid,
-          })}
-          disabled={!isValid}
-        >
-          Save
-        </Button>
-      </CardFooter>
+      <CardFooterSave isValid={isValid} />
     </form>
   );
 }

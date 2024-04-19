@@ -23,6 +23,7 @@ model User{
   Meditations Meditation[]
   ReadingEntries ReadingEntry[]
   MoodEntries MoodEntry[]
+  HobbyEntries HobbyEntry[]
 }
 
 model JournalEntry {
@@ -73,4 +74,19 @@ model Mood {
   id          String    @id @default(cuid())
   name        String
   moodEntries MoodEntry[]
+}
+
+model Hobby {
+  id          String    @id @default(cuid())
+  name        String    @db.VarChar(127)
+  hobbyEntries HobbyEntry[]
+}
+
+model HobbyEntry {
+  id          String    @id @default(cuid())
+  user        User      @relation(fields: [userId], references: [id])
+  userId      String
+  hobby       Hobby      @relation(fields: [hobbyId], references: [id])
+  hobbyId     String
+  date        DateTime  @default(now()) @db.Date
 }

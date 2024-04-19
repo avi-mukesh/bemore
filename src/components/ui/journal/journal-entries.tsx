@@ -3,7 +3,7 @@ import {
   fetchJournalEntriesForUserPages,
 } from "@/lib/journal/data";
 import JournalEntryCard from "./journal-entry-card";
-import JournalPagination from "./pagination";
+import Pagination from "../shared/pagination";
 
 type PropsType = {
   userId: string;
@@ -25,7 +25,7 @@ export default async function JournalEntries({
         ))}
       </div>
       <div className="mt-5 flex w-full justify-center">
-        {totalPages && <JournalPagination totalPages={totalPages} />}
+        {totalPages && <Pagination totalPages={totalPages} />}
       </div>
     </>
   );

@@ -3,20 +3,33 @@ import { unstable_noStore as noStore } from 'next/cache';
 
 const PAGE_SIZE=6;
 
-export async function fetchReadingEntriesForUser(userId: string, currentPage:number) {
+export async function fetchReadingEntriesForUser(userId: string, currentPage?:number) {
   noStore()
-  const skip = (currentPage - 1) * PAGE_SIZE
+
+  if(currentPage) {
+
+    const skip = (currentPage - 1) * PAGE_SIZE
+      try {
+          const entries = await prisma.readingEntry.findMany({
+            where: { userId },
+            skip,
+            take: PAGE_SIZE,
+            orderBy: { "date" : "desc" }
+          });
+          return entries;
+      } catch (error) {
+        console.error('Database Error:', error);
+      }
+  }else {
     try {
-        const entries = await prisma.readingEntry.findMany({
-          where: { userId },
-          skip,
-          take: PAGE_SIZE,
-          orderBy: { "date" : "desc" }
-        });
-        return entries;
+      const entries = await prisma.readingEntry.findMany({
+        where: { userId },
+      });
+      return entries;
     } catch (error) {
       console.error('Database Error:', error);
     }
+  }
 }
 export async function fetchReadingEntriesForUserPages(userId: string) {
     noStore()

@@ -6,7 +6,7 @@ import {
 } from "@radix-ui/react-navigation-menu";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { Dispatch, SetStateAction } from "react";
+import React from "react";
 import {
   NavigationMenuItem,
   NavigationMenuLink,
@@ -20,7 +20,8 @@ const dashLinks = [
   { name: "Home", href: "/dashboard", icon: Icons.dashboard },
   { name: "Journal", href: "/dashboard/journal", icon: Icons.notebook },
   { name: "Meditation", href: "/dashboard/meditation", icon: Icons.leaf },
-  // { name: "Hobbies", href: "/dashboard/hobbies" },
+  { name: "Hobbies", href: "/dashboard/hobbies", icon: Icons.trophy },
+  // { name: "Social", href: "/dashboard/social", icon: Icons.social },
   { name: "Reading", href: "/dashboard/reading", icon: Icons.book },
 ];
 

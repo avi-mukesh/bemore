@@ -8,6 +8,7 @@ import { useFormState } from "react-dom";
 import { createMeditation } from "@/lib/meditation/actions";
 import clsx from "clsx";
 import { useForm } from "react-hook-form";
+import CardFooterSave from "../shared/card-footer-save";
 
 type PropsType = {
   userId: string;
@@ -48,18 +49,7 @@ export default function MeditationForm({ userId }: PropsType) {
           </p>
         </div>
       </CardContent>
-      <CardFooter>
-        <Button
-          type="submit"
-          variant="default"
-          className={clsx("mx-auto", {
-            "bg-muted text-muted-foreground": !isValid,
-          })}
-          disabled={!isValid}
-        >
-          Save
-        </Button>
-      </CardFooter>
+      <CardFooterSave isValid={isValid} />
     </form>
   );
 }

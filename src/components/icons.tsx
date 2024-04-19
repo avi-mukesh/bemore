@@ -16,6 +16,7 @@ import {
   Github,
   LucideProps,
   X,
+  Users,
 } from "lucide-react";
 
 export type Icon = LucideIcon;
@@ -26,6 +27,7 @@ export const Icons = {
   leaf: Leaf,
   trophy: Trophy,
   book: BookOpen,
+  social: Users,
   laugh: Laugh,
   smile: Smile,
   meh: Meh,

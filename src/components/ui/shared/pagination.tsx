@@ -4,7 +4,7 @@ import React from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 
 import {
-  Pagination,
+  Pagination as ShadPagination,
   PaginationContent,
   PaginationEllipsis,
   PaginationItem,
@@ -48,7 +48,7 @@ const generatePagination = (currentPage: number, totalPages: number) => {
   ];
 };
 
-export default function JournalPagination({ totalPages }: PropsType) {
+export default function Pagination({ totalPages }: PropsType) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const currentPage = Number(searchParams.get("page")) || 1;
@@ -61,7 +61,7 @@ export default function JournalPagination({ totalPages }: PropsType) {
   };
 
   return (
-    <Pagination>
+    <ShadPagination>
       <PaginationContent>
         {allPages.map((page, index) => (
           <PaginationItem key={page}>
@@ -73,6 +73,6 @@ export default function JournalPagination({ totalPages }: PropsType) {
           </PaginationItem>
         ))}
       </PaginationContent>
-    </Pagination>
+    </ShadPagination>
   );
 }
