@@ -19,3 +19,11 @@ export const formatDateToLocal = (
 };
 
 export type Mood = "angry"| "frown"| "meh"|"smile"| "laugh"
+
+export type ReadingEntryWithBookTitle = {
+  id: string,
+  userId: string,
+  bookTitle: string,
+  bookId: string,
+  date: Date
+}

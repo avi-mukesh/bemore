@@ -3,8 +3,13 @@ import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
 import { fetchJournalEntriesForUser } from "@/lib/journal/data";
 import { auth } from "@/auth";
 import { fetchMeditationsForUser } from "@/lib/meditation/data";
-import { fetchReadingEntriesForUser } from "@/lib/reading/data";
+import {
+  fetchBookById,
+  fetchBooks,
+  fetchReadingEntriesForUser,
+} from "@/lib/reading/data";
 import Calendar from "./calendar";
+import { ReadingEntry } from "@prisma/client";
 
 export default async function DashboardCalendar() {
   const session = await auth();
@@ -20,9 +25,14 @@ export default async function DashboardCalendar() {
     meditations = await fetchMeditationsForUser(userId);
     readingEntries = await fetchReadingEntriesForUser(userId);
 
-    if (journalEntries && meditations && readingEntries) {
+    let books = await fetchBooks();
+
+    if (journalEntries && meditations && readingEntries && books) {
       return (
-        <Calendar events={{ journalEntries, meditations, readingEntries }} />
+        <Calendar
+          events={{ journalEntries, meditations, readingEntries }}
+          books={books}
+        />
       );
     }
   }
