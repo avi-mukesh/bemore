@@ -41,7 +41,7 @@ export default function Calendar({ events }: PropsType) {
   return (
     <FullCalendar
       plugins={[dayGridPlugin]}
-      initialView="listWeek"
+      initialView="dayGridMonth"
       events={calendarEvents}
     />
   );
