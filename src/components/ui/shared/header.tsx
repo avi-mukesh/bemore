@@ -6,13 +6,15 @@ import { useNavbar } from "@/context/NavbarContext";
 import Link from "next/link";
 import React, { useEffect } from "react";
 import { DropdownMenu, DropdownMenuTrigger } from "../dropdown-menu";
-import { Button } from "../button";
+import { Button } from "@/components/ui/button";
+import UserNav from "./user-nav";
 
 type PropsType = {
   username: string | undefined;
+  email: string | null | undefined;
 };
 
-export default function Header({ username }: PropsType) {
+export default function Header({ username, email }: PropsType) {
   const { isNavbarOpen, setIsNavbarOpen } = useNavbar();
 
   return (
@@ -22,7 +24,7 @@ export default function Header({ username }: PropsType) {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
-                className="md:hidden"
+                className="md:hidden px-2"
                 variant="outline"
                 onClick={() => setIsNavbarOpen((b: boolean) => !b)}
               >
@@ -48,7 +50,7 @@ export default function Header({ username }: PropsType) {
           </Link>
         </div>
         <div className="flex items-center gap-2">
-          <p className="hidden md:block">{username}</p>
+          {username && <UserNav username={username} email={email} />}
           <ModeToggle />
         </div>
       </nav>
