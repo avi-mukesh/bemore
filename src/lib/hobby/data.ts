@@ -3,9 +3,12 @@ import { unstable_noStore as noStore } from 'next/cache';
 
 const PAGE_SIZE=6;
 
-export async function fetchHobbyEntriesForUser(userId: string, currentPage:number) {
+export async function fetchHobbyEntriesForUser(userId: string, currentPage?:number) {
   noStore()
-  const skip = (currentPage - 1) * PAGE_SIZE
+
+  if(currentPage) {
+
+    const skip = (currentPage - 1) * PAGE_SIZE
     try {
         const entries = await prisma.hobbyEntry.findMany({
           where: { userId },
@@ -17,6 +20,17 @@ export async function fetchHobbyEntriesForUser(userId: string, currentPage:numbe
     } catch (error) {
       console.error('Database Error:', error);
     }
+  }else{
+    try {
+      const entries = await prisma.hobbyEntry.findMany({
+        where: { userId },
+      });
+      return entries;
+    } catch (error) {
+      console.error('Database Error:', error);
+    }
+    
+  }
 }
 export async function fetchHobbyEntriesForUserPages(userId: string) {
     noStore()
@@ -32,7 +46,7 @@ export async function fetchTodaysHobbyEntryForUser(userId: string) {
   try {
     const entriesToday = await prisma.hobbyEntry.findMany({where: {userId, date: new Date()}})
     if(entriesToday.length > 0 ){
-      return entriesToday
+      return entriesToday[0]
     }
     return null
   }catch(error) {

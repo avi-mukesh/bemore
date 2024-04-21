@@ -1,15 +1,9 @@
-import FullCalendar from "@fullcalendar/react";
-import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
 import { fetchJournalEntriesForUser } from "@/lib/journal/data";
 import { auth } from "@/auth";
 import { fetchMeditationsForUser } from "@/lib/meditation/data";
-import {
-  fetchBookById,
-  fetchBooks,
-  fetchReadingEntriesForUser,
-} from "@/lib/reading/data";
+import { fetchBooks, fetchReadingEntriesForUser } from "@/lib/reading/data";
 import Calendar from "./calendar";
-import { ReadingEntry } from "@prisma/client";
+import { fetchHobbies, fetchHobbyEntriesForUser } from "@/lib/hobby/data";
 
 export default async function DashboardCalendar() {
   const session = await auth();
@@ -18,20 +12,30 @@ export default async function DashboardCalendar() {
   let journalEntries;
   let meditations;
   let readingEntries;
-  //   let hobbyEntries;
+  let hobbyEntries;
 
   if (userId) {
     journalEntries = await fetchJournalEntriesForUser(userId);
     meditations = await fetchMeditationsForUser(userId);
     readingEntries = await fetchReadingEntriesForUser(userId);
+    hobbyEntries = await fetchHobbyEntriesForUser(userId);
 
     let books = await fetchBooks();
+    let hobbies = await fetchHobbies();
 
-    if (journalEntries && meditations && readingEntries && books) {
+    if (
+      journalEntries &&
+      meditations &&
+      readingEntries &&
+      hobbyEntries &&
+      books &&
+      hobbies
+    ) {
       return (
         <Calendar
-          events={{ journalEntries, meditations, readingEntries }}
+          events={{ journalEntries, meditations, readingEntries, hobbyEntries }}
           books={books}
+          hobbies={hobbies}
         />
       );
     }

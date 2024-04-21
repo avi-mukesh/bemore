@@ -3,7 +3,14 @@
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
 import listPlugin from "@fullcalendar/list"; // a plugin!
-import { Book, JournalEntry, Meditation, ReadingEntry } from "@prisma/client";
+import {
+  Book,
+  Hobby,
+  HobbyEntry,
+  JournalEntry,
+  Meditation,
+  ReadingEntry,
+} from "@prisma/client";
 import { useEffect } from "react";
 import { LucideIcon } from "lucide-react";
 import { Icons } from "@/components/icons";
@@ -19,11 +26,13 @@ type PropsType = {
     journalEntries: JournalEntry[];
     meditations: Meditation[];
     readingEntries: ReadingEntry[];
+    hobbyEntries: HobbyEntry[];
   };
   books: Book[];
+  hobbies: Hobby[];
 };
 
-export default function Calendar({ events, books }: PropsType) {
+export default function Calendar({ events, books, hobbies }: PropsType) {
   useEffect(() => {
     console.log(events);
   }, [events]);
@@ -45,6 +54,19 @@ export default function Calendar({ events, books }: PropsType) {
     icon: "leaf",
     details: `Meditated for ${entry.duration} minutes.`,
   }));
+  const hobbyEvents = events.hobbyEntries?.map((entry) => {
+    // not the best solution but will do for now
+    const hobbyName = hobbies.filter((h) => h.id === entry.hobbyId)[0].name;
+
+    return {
+      title: "Hobby",
+      date: entry.date,
+      color: "#e0db3d",
+      allDay: true,
+      icon: "trophy",
+      details: `Did ${hobbyName}`,
+    };
+  });
   const readingEvents = events.readingEntries?.map((entry) => {
     // not the best solution but will do for now
     const bookTitle = books.filter((b) => b.id === entry.bookId)[0].title;
@@ -63,6 +85,7 @@ export default function Calendar({ events, books }: PropsType) {
     ...journalEvents,
     ...meditationEvents,
     ...readingEvents,
+    ...hobbyEvents,
   ];
 
   return (
@@ -98,16 +121,14 @@ function renderEventContent(eventInfo: any) {
     case "book":
       Icon = Icons.book;
       break;
+    case "trophy":
+      Icon = Icons.trophy;
+      break;
     default:
       Icon = Icons.smile;
   }
 
   return (
-    // <>
-    //   <p className="flex justify-center">
-    //     <Icon />
-    //   </p>
-    // </>
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>

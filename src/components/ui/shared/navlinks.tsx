@@ -15,6 +15,7 @@ import {
 import { Icons } from "@/components/icons";
 import { Separator } from "../separator";
 import type { LucideIcon } from "lucide-react";
+import clsx from "clsx";
 
 const dashLinks = [
   { name: "Home", href: "/dashboard", icon: Icons.dashboard },
@@ -34,6 +35,7 @@ const loginLink = [{ name: "Login", href: "/login", icon: Icons.login }];
 
 type PropsType = {
   isLoggedIn: boolean;
+  isNavbarOpen: boolean;
 };
 
 type LinkType = {
@@ -42,7 +44,7 @@ type LinkType = {
   icon: LucideIcon;
 };
 
-export default function Navlinks({ isLoggedIn }: PropsType) {
+export default function Navlinks({ isLoggedIn, isNavbarOpen }: PropsType) {
   const pathname = usePathname();
 
   function generateNavLinks(links: LinkType[]) {
@@ -52,11 +54,18 @@ export default function Navlinks({ isLoggedIn }: PropsType) {
         <NavigationMenuItem key={link.name}>
           <Link href={link.href} legacyBehavior passHref>
             <NavigationMenuLink
-              className={`${navigationMenuTriggerStyle()} flex justify-end gap-4 !w-full`}
+              className={`${navigationMenuTriggerStyle()} flex justify-center md:justify-between gap-4 !w-full`}
               active={pathname === link.href}
             >
               <LinkIcon className="w-6" />
-              <p className="block">{link.name}</p>
+              <p
+                className={clsx(
+                  { "md:hidden": !isNavbarOpen },
+                  { block: isNavbarOpen }
+                )}
+              >
+                {link.name}
+              </p>
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>

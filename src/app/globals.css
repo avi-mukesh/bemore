@@ -72,10 +72,6 @@
   }
 }
 
-.fc-daygrid-day-events {
-  /* z-index: 0; */
-}
-
 @layer base {
   * {
     @apply border-border;

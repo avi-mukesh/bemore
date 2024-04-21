@@ -66,10 +66,13 @@ const CreateHobby = HobbyFormSchema.omit({id: true})
 export async function createHobby(prevState: HobbyFormState, formData: FormData) : Promise<HobbyFormState>{
 
     const validatedFields = CreateHobby.safeParse({
-        title: formData.get("name")
+        name: formData.get("name")
     })
 
     if(!validatedFields.success){
+
+        console.log(validatedFields.error.flatten().fieldErrors)
+
         return {
             errors: validatedFields.error.flatten().fieldErrors,
             message: "Invalid data. Failed to create hobby."
