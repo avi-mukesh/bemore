@@ -24,10 +24,10 @@ const dashLinks = [
   { name: "Hobbies", href: "/dashboard/hobbies", icon: Icons.trophy },
   // { name: "Social", href: "/dashboard/social", icon: Icons.social },
   { name: "Reading", href: "/dashboard/reading", icon: Icons.book },
-  { name: "Assistant", href: "/assistant", icon: Icons.bot },
 ];
 
 const otherLinks = [
+  { name: "Assistant", href: "/assistant", icon: Icons.bot },
   { name: "About", href: "/about", icon: Icons.about },
   // { name: "Privacy", href: "/about", icon: Icons.about },
 ];

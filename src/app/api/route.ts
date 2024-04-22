@@ -2,7 +2,7 @@ import Replicate from "replicate";
 import { ReplicateStream, StreamingTextResponse } from "ai";
 import { NextApiRequest } from "next";
 import { NextRequest } from "next/server";
-export const runtime = "edge";
+// export const runtime = "edge";
 
 const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN,
@@ -16,11 +16,17 @@ if (!process.env.REPLICATE_API_TOKEN) {
 
 export async function POST(req: NextRequest) {
   const params = await req.json();
+  
 
   let response = await runLlama(params);
 
+    // console.log("RESPONSE:",response);
+
   // Convert the response into a friendly text-stream
   const stream = await ReplicateStream(response);
+
+  console.log("STREAM:", stream)
+
   // Respond with the stream
   return new StreamingTextResponse(stream);
 }
