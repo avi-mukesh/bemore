@@ -36,7 +36,7 @@ export default function Message({ message, isUser }: PropsType) {
         <span className="text-xl sm:text-2xl">
           <Avatar>
             <AvatarImage
-              src="https://i.ibb.co/80hbvFr/cbc89ce3-6514-47de-a2dd-db90276ca138.webp"
+              src="https://i.ibb.co/XCksTXN/5a518767-b170-4eb8-979d-1b8506ffe102.jpg"
               alt="Adonis"
             ></AvatarImage>
             <AvatarFallback>A</AvatarFallback>
