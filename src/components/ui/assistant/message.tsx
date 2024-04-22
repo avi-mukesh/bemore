@@ -11,7 +11,7 @@ export default function Message({ message, isUser }: PropsType) {
     console.log(message);
   }, [message]);
 
-  let containerClass = "bg-";
+  let containerClass = "bg-primary-foreground";
   if (isUser) {
     containerClass = "";
   }
@@ -25,9 +25,7 @@ export default function Message({ message, isUser }: PropsType) {
   }
 
   return (
-    <div
-      className={`flex gap-x-4 rounded-md ${containerClass} bg-primary-foreground py-3 px-5 mb-1`}
-    >
+    <div className={`flex gap-x-4 rounded-md ${containerClass} py-3 px-5 mb-1`}>
       {isUser ? (
         <span className="text-xl sm:text-2xl" title="user">
           🥸
