@@ -17,6 +17,7 @@ import {
   LucideProps,
   X,
   Users,
+  Bot,
 } from "lucide-react";
 
 export type Icon = LucideIcon;
@@ -28,6 +29,7 @@ export const Icons = {
   trophy: Trophy,
   book: BookOpen,
   social: Users,
+  bot: Bot,
   laugh: Laugh,
   smile: Smile,
   meh: Meh,

@@ -51,8 +51,9 @@ export const authConfig = {
             const isLoggedIn = !!auth?.user
             const isOnDashboard = nextUrl.pathname.startsWith("/dashboard")
             const isOnAbout = nextUrl.pathname.startsWith("/about")
+            const isOnAssistant = nextUrl.pathname.startsWith("/assistant")
 
-            if(isOnAbout){
+            if(isOnAbout || isOnAssistant){
                 return true;
             }
 

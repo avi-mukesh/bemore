@@ -1,8 +1,7 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 
 import Navlinks from "./navlinks";
-import SubmitButton from "@/components/ui/shared/submit-button";
 import { _signOut } from "@/lib/user/actions";
 import { useNavbar } from "@/context/NavbarContext";
 import clsx from "clsx";
@@ -55,17 +54,6 @@ export default function Navbar({ isLoggedIn }: PropsType) {
               <Icons.github className="h-6 w-6" />
             </Link>
           </div>
-          {/* move this into header */}
-          {/* {isLoggedIn && (
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                _signOut();
-              }}
-            >
-              <SubmitButton variant="destructive" text="Log out" />
-            </form>
-          )} */}
         </div>
       </div>
     </div>

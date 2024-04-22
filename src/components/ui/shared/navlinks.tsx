@@ -24,6 +24,7 @@ const dashLinks = [
   { name: "Hobbies", href: "/dashboard/hobbies", icon: Icons.trophy },
   // { name: "Social", href: "/dashboard/social", icon: Icons.social },
   { name: "Reading", href: "/dashboard/reading", icon: Icons.book },
+  { name: "Assistant", href: "/assistant", icon: Icons.bot },
 ];
 
 const otherLinks = [
