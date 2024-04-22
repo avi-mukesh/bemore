@@ -28,7 +28,7 @@ export default function ChatForm({ prompt, setPrompt, onSubmit }: PropsType) {
         autoComplete="off"
         autoFocus
         name="prompt"
-        className="flex-grow block w-full rounded-l-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:leading-6"
+        className="flex-grow block w-full rounded-l-md border-0 py-1.5 text-secondary-foreground ring-1 ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-gray-600 sm:leading-6"
         placeholder="Send a message"
         required={true}
         value={prompt}

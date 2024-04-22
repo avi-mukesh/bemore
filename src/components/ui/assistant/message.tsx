@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "../avatar";
-import Image from "next/image";
 
 type PropsType = {
   message: any;
@@ -12,7 +11,7 @@ export default function Message({ message, isUser }: PropsType) {
     console.log(message);
   }, [message]);
 
-  let containerClass = "bg-gray-50";
+  let containerClass = "bg-";
   if (isUser) {
     containerClass = "";
   }
@@ -26,7 +25,9 @@ export default function Message({ message, isUser }: PropsType) {
   }
 
   return (
-    <div className={`flex gap-x-4 rounded-md ${containerClass} py-3 px-5 mb-1`}>
+    <div
+      className={`flex gap-x-4 rounded-md ${containerClass} bg-primary-foreground py-3 px-5 mb-1`}
+    >
       {isUser ? (
         <span className="text-xl sm:text-2xl" title="user">
           🥸
