@@ -18,7 +18,7 @@ import type { LucideIcon } from "lucide-react";
 import clsx from "clsx";
 
 const dashLinks = [
-  { name: "Home", href: "/dashboard", icon: Icons.dashboard },
+  { name: "Dashboard", href: "/dashboard", icon: Icons.dashboard },
   { name: "Journal", href: "/dashboard/journal", icon: Icons.notebook },
   { name: "Meditation", href: "/dashboard/meditation", icon: Icons.leaf },
   { name: "Hobbies", href: "/dashboard/hobbies", icon: Icons.trophy },
