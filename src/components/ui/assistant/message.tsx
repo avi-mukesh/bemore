@@ -4,8 +4,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "../avatar";
 type PropsType = {
   message: any;
   isUser: boolean;
-  avatar: string;
-  username: string;
+  avatar?: string | null | undefined;
+  username?: string | undefined;
 };
 
 export default function Message({
@@ -36,8 +36,12 @@ export default function Message({
       {isUser ? (
         <span className="text-xl sm:text-2xl" title="user">
           <Avatar>
-            <AvatarImage src={avatar} alt={username}></AvatarImage>
-            <AvatarFallback>{username[0].toUpperCase()}</AvatarFallback>
+            {avatar !== null && (
+              <AvatarImage src={avatar} alt={username}></AvatarImage>
+            )}
+            {username && (
+              <AvatarFallback>{username[0].toUpperCase()}</AvatarFallback>
+            )}
           </Avatar>
         </span>
       ) : (

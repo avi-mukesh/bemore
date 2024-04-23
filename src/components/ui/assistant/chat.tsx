@@ -212,6 +212,7 @@ export default function Chat({
             message={message.text}
             isUser={message.isUser}
             avatar={avatar}
+            username={username}
           />
         ))}
         <Message message={completion} isUser={false} />
