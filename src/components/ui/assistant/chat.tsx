@@ -10,7 +10,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { testReplicate } from "@/lib/replicate";
 import React, { useEffect, useReducer, useRef, useState } from "react";
-import MessageHistory from "./message-history";
 import { useCompletion } from "ai/react";
 
 import { Llama3Template } from "@/prompt_template";
@@ -53,6 +52,7 @@ const llama3Template = Llama3Template();
 
 type PropsType = {
   username: string | undefined;
+  avatar: string | null | undefined;
   journaledToday: boolean;
   meditatedToday: boolean;
   hobbyToday: boolean;
@@ -61,6 +61,7 @@ type PropsType = {
 
 export default function Chat({
   username,
+  avatar,
   journaledToday,
   meditatedToday,
   hobbyToday,
@@ -210,6 +211,7 @@ export default function Chat({
             key={`message-${index}`}
             message={message.text}
             isUser={message.isUser}
+            avatar={avatar}
           />
         ))}
         <Message message={completion} isUser={false} />

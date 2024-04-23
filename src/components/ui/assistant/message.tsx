@@ -4,9 +4,16 @@ import { Avatar, AvatarFallback, AvatarImage } from "../avatar";
 type PropsType = {
   message: any;
   isUser: boolean;
+  avatar: string;
+  username: string;
 };
 
-export default function Message({ message, isUser }: PropsType) {
+export default function Message({
+  message,
+  isUser,
+  avatar,
+  username,
+}: PropsType) {
   useEffect(() => {
     console.log(message);
   }, [message]);
@@ -28,7 +35,10 @@ export default function Message({ message, isUser }: PropsType) {
     <div className={`flex gap-x-4 rounded-md ${containerClass} py-3 px-5 mb-1`}>
       {isUser ? (
         <span className="text-xl sm:text-2xl" title="user">
-          🥸
+          <Avatar>
+            <AvatarImage src={avatar} alt={username}></AvatarImage>
+            <AvatarFallback>{username[0].toUpperCase()}</AvatarFallback>
+          </Avatar>
         </span>
       ) : (
         <span className="text-xl sm:text-2xl">

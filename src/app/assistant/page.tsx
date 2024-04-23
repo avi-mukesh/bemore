@@ -30,6 +30,7 @@ export default async function page() {
     <div className="flex flex-col items-center gap-2 h-full">
       <Chat
         username={session?.user?.username}
+        avatar={session?.user?.image}
         journaledToday={journaledToday}
         meditatedToday={meditatedToday}
         hobbyToday={hobbyToday}
