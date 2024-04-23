@@ -44,6 +44,7 @@ export default async function RootLayout({
                 <Header
                   username={session?.user?.username}
                   email={session?.user?.email}
+                  avatar={session?.user?.image}
                 />
                 {children}
               </div>

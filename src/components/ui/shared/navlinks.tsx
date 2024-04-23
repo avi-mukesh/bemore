@@ -32,6 +32,10 @@ const otherLinks = [
   // { name: "Privacy", href: "/about", icon: Icons.about },
 ];
 
+const settingsLinks = [
+  { name: "Account", href: "/settings/account", icon: Icons.settings },
+];
+
 const loginLink = [{ name: "Login", href: "/login", icon: Icons.login }];
 
 type PropsType = {
@@ -78,7 +82,11 @@ export default function Navlinks({ isLoggedIn, isNavbarOpen }: PropsType) {
     <NavigationMenu>
       {isLoggedIn && (
         <>
-          <NavigationMenuList>{generateNavLinks(dashLinks)}</NavigationMenuList>
+          <NavigationMenuList>
+            {generateNavLinks(
+              pathname.startsWith("/settings") ? settingsLinks : dashLinks
+            )}
+          </NavigationMenuList>
           <Separator className="my-2" />
         </>
       )}

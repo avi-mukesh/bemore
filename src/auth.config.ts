@@ -50,6 +50,7 @@ export const authConfig = {
         authorized({auth, request:{nextUrl}}){
             const isLoggedIn = !!auth?.user
             const isOnDashboard = nextUrl.pathname.startsWith("/dashboard")
+            const isOnSettings = nextUrl.pathname.startsWith("/settings")
             const isOnAbout = nextUrl.pathname.startsWith("/about")
             const isOnAssistant = nextUrl.pathname.startsWith("/assistant")
 
@@ -57,7 +58,7 @@ export const authConfig = {
                 return true;
             }
 
-            if(isOnDashboard){
+            if(isOnDashboard || isOnSettings){
                 if(isLoggedIn) return true;
                 return false;
             } else if(isLoggedIn) {

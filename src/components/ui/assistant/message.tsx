@@ -35,9 +35,9 @@ export default function Message({ message, isUser }: PropsType) {
           <Avatar>
             <AvatarImage
               src="https://i.ibb.co/XCksTXN/5a518767-b170-4eb8-979d-1b8506ffe102.jpg"
-              alt="Adonis"
+              alt="Mukesh"
             ></AvatarImage>
-            <AvatarFallback>A</AvatarFallback>
+            <AvatarFallback>M</AvatarFallback>
           </Avatar>
         </span>
       )}

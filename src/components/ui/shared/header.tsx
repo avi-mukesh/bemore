@@ -12,9 +12,10 @@ import UserNav from "./user-nav";
 type PropsType = {
   username: string | undefined;
   email: string | null | undefined;
+  avatar: string | null | undefined;
 };
 
-export default function Header({ username, email }: PropsType) {
+export default function Header({ username, email, avatar }: PropsType) {
   const { isNavbarOpen, setIsNavbarOpen } = useNavbar();
 
   return (
@@ -50,7 +51,9 @@ export default function Header({ username, email }: PropsType) {
           </Link>
         </div>
         <div className="flex items-center gap-2">
-          {username && <UserNav username={username} email={email} />}
+          {username && (
+            <UserNav username={username} email={email} avatar={avatar} />
+          )}
           <ModeToggle />
         </div>
       </nav>

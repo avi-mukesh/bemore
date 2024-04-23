@@ -19,6 +19,7 @@ model User{
   username    String    @db.VarChar(255)
   email       String    @db.VarChar(255)
   password    String    @db.VarChar(511)
+  image      String?    @db.VarChar(127)
   JournalEntries JournalEntry[]
   Meditations Meditation[]
   ReadingEntries ReadingEntry[]

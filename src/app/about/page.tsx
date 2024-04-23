@@ -28,6 +28,11 @@ export default function page() {
           waffling.
         </p>
         <p>
+          You also have a personal assistant called Mukesh you can speak to -
+          he&apos;s there to guide you along your self-improvement journey. He
+          is an absolute chad.
+        </p>
+        <p>
           Feel free to contact me by{" "}
           <a
             href="mailto:avimukesh10@gmail.com"

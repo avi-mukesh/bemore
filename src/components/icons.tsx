@@ -18,11 +18,14 @@ import {
   X,
   Users,
   Bot,
+  Settings,
+  User,
 } from "lucide-react";
 
 export type Icon = LucideIcon;
 
 export const Icons = {
+  user: User,
   dashboard: LayoutDashboardIcon,
   notebook: Notebook,
   leaf: Leaf,
@@ -39,6 +42,7 @@ export const Icons = {
   close: X,
   about: Info,
   login: LogIn,
+  settings: Settings,
   github: ({ ...props }: LucideProps) => (
     <svg
       aria-hidden="true"

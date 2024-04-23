@@ -6,6 +6,7 @@ import {hash} from "bcryptjs"
 import { redirect } from "next/navigation";
 import { signIn, signOut } from "@/auth";
 import { AuthError } from "next-auth";
+import { Prisma } from "@prisma/client";
 
 const passwordRegex = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/i);
 
@@ -122,4 +123,12 @@ export async function createGoogleUserIfNotExists(email: string) {
 
 export async function _signOut() {
     await signOut()
+}
+
+export async function updateAvatar(id: string, image: string){
+    try {
+        await prisma.user.update({where: {id}, data: {image}})
+    }catch (error) {
+        console.error("Failed to update avatar:", error)
+    }
 }

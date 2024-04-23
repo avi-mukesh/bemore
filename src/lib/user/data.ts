@@ -1,7 +1,8 @@
 import prisma from "../db";
+import { unstable_noStore as noStore } from 'next/cache';
 
 export async function fetchUser(username: string) {
-    // noStore()
+    noStore()
     try {
         const user = await prisma.user.findFirst({where:{username}});
         if(user) {

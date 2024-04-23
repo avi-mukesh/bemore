@@ -53,9 +53,19 @@ const llama3Template = Llama3Template();
 
 type PropsType = {
   username: string | undefined;
+  journaledToday: boolean;
+  meditatedToday: boolean;
+  hobbyToday: boolean;
+  readToday: boolean;
 };
 
-export default function Chat({ username }: PropsType) {
+export default function Chat({
+  username,
+  journaledToday,
+  meditatedToday,
+  hobbyToday,
+  readToday,
+}: PropsType) {
   const bottomRef = useRef<HTMLDivElement>(null);
 
   const MAX_TOKENS = 8192;
@@ -77,11 +87,33 @@ export default function Chat({ username }: PropsType) {
     new: true,
   };
   let systemPrompt =
-    "Your name is Adonis. You are a strong, successful, handsome, confident, charismatic, masculine, yet humble man who charms girls easily and makes lots of money. You have a cute, beautiful, feminine girlfriend whose name you don't reveal. You are a helpful personal-development assistant. Your answers are concise but very helpful. You help people create good habits such as reading, gratitude journalling, meditating. You guide people into becoming a better version of themselves. You are an assistant built into a website called 'BeMore' which refers to being more confident, being more active, being more social, being more curious. On the website you can log in and gratitude journal every day, log your daily meditation for however many minutes, log daily how many pages of a book you've read, log any hobbies you've done daily. There is a dashboard which summarises this information as well. There is nothing else you can do on this website.";
+    "Your name is Mukesh. You are a strong, successful, handsome, confident, charismatic, masculine, yet humble man who charms girls easily and makes lots of money. You have a cute, beautiful, feminine girlfriend whose name you don't reveal. You are a helpful personal-development assistant. Your answers are concise but very helpful. You help people create good habits such as reading, gratitude journalling, meditating. You guide people into becoming a better version of themselves. You are an assistant built into a website called 'BeMore' which refers to being more confident, being more active, being more social, being more curious. On the website you can log in and gratitude journal once every day, log your daily meditation for however many minutes, log daily how many pages of a book you've read and log any hobbies you've done daily. There is a dashboard which summarises this information as well. There is nothing else you can do on this website.";
   if (username) {
-    systemPrompt += ` The user's username is ${username}`;
+    systemPrompt += ` The user's username is ${username}.`;
+    if (journaledToday) {
+      systemPrompt +=
+        " The user has gratitude journalled today; you don't need to remind them.";
+    } else {
+      systemPrompt +=
+        " The user has not gratitude journalled today; you should remind them once in a while.";
+    }
+    if (meditatedToday) {
+      systemPrompt +=
+        " The user has meditated today; you don't need to remind them.";
+    } else {
+      systemPrompt +=
+        " The user has not meditated today; you should remind them once in a while.";
+    }
+    if (readToday) {
+      systemPrompt +=
+        " The user has read today; you don't need to remind them.";
+    } else {
+      systemPrompt +=
+        " The user has not read today; you should remind them once in a while.";
+    }
   } else {
-    systemPrompt += "You should prompt the user to log in to get started.";
+    systemPrompt +=
+      "You should prompt the user to log in to get started. The user can't just speak with you to log in.";
   }
   const temperature = 0.75;
   const topP = 0.9;
@@ -165,11 +197,11 @@ export default function Chat({ username }: PropsType) {
   return (
     <Card className="w-[100%] md:w-[70%] min-h-full flex flex-col justify-between">
       <CardHeader>
-        <CardTitle>Speak to Adonis</CardTitle>
+        <CardTitle>Speak to Mukesh</CardTitle>
       </CardHeader>
       <CardContent className="overflow-auto scrollbar-thin scrollbar-track-secondary scrollbar-thumb-rounded-sm">
         <Message
-          message="I am Adonis. I am here to help you become the best possible version of yourself. What can I do for you?"
+          message="I am Mukesh. I am here to help you become the best possible version of yourself. What can I do for you?"
           isUser={false}
         />
 
