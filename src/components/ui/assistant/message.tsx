@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "../avatar";
+import { Icons } from "@/components/icons";
 
 type PropsType = {
   message: any;
@@ -39,9 +40,10 @@ export default function Message({
             {avatar !== null && (
               <AvatarImage src={avatar} alt={username}></AvatarImage>
             )}
-            {username && (
-              <AvatarFallback>{username[0].toUpperCase()}</AvatarFallback>
-            )}
+
+            <AvatarFallback className="w-10 h-10">
+              <Icons.user className="w-10 h-10" />
+            </AvatarFallback>
           </Avatar>
         </span>
       ) : (
