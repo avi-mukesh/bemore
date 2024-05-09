@@ -15,10 +15,6 @@ export default function Message({
   avatar,
   username,
 }: PropsType) {
-  useEffect(() => {
-    console.log(message);
-  }, [message]);
-
   let containerClass = "bg-primary-foreground";
   if (isUser) {
     containerClass = "";

@@ -1,7 +1,7 @@
 import Replicate from "replicate";
 import { ReplicateStream, StreamingTextResponse } from "ai";
 import { NextApiRequest } from "next";
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 // export const runtime = "edge";
 
 const replicate = new Replicate({
@@ -17,17 +17,34 @@ if (!process.env.REPLICATE_API_TOKEN) {
 export async function POST(req: NextRequest) {
   const params = await req.json();
 
-  // let response = await runLlama(params);
+  const referer = req.headers.get("referer");
+  console.log("request referer", referer);
 
-  console.log("params:", params);
+  const origin = req.headers.get("origin");
+  console.log("request origin", origin);
+
+  const nextUrl = req.nextUrl;
+  const pathname = nextUrl.pathname;
+  console.log("request nextUrl pathname", pathname);
+
+  if (pathname.startsWith("/api")) {
+    if (
+      !req.headers
+        .get("referer")
+        ?.includes(process.env.APP_URL ?? "http://localhost:3000")
+    ) {
+      console.error("unauthorized");
+      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    }
+  }
+
+  let response = await runLlama(params);
 
   // Convert the response into a friendly text-stream
-  // const stream = await ReplicateStream(response);
-
-  // console.log("STREAM:", stream);
+  const stream = await ReplicateStream(response);
 
   // Respond with the stream
-  // return new StreamingTextResponse(stream);
+  return new StreamingTextResponse(stream);
 }
 
 async function runLlama({
@@ -46,8 +63,6 @@ async function runLlama({
   topP: number;
 }) {
   console.log("running llama");
-  console.log("model", model);
-  console.log("maxTokens", maxTokens);
 
   return await replicate.predictions.create({
     model: model,
