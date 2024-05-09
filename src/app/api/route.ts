@@ -17,7 +17,7 @@ if (!process.env.REPLICATE_API_TOKEN) {
 export async function POST(req: NextRequest) {
   const params = await req.json();
 
-  let response = await runLlama(params);
+  // let response = await runLlama(params);
 
   console.log("params:", params);
 
