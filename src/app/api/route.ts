@@ -22,12 +22,12 @@ export async function POST(req: NextRequest) {
   console.log("params:", params);
 
   // Convert the response into a friendly text-stream
-  const stream = await ReplicateStream(response);
+  // const stream = await ReplicateStream(response);
 
-  console.log("STREAM:", stream);
+  // console.log("STREAM:", stream);
 
   // Respond with the stream
-  return new StreamingTextResponse(stream);
+  // return new StreamingTextResponse(stream);
 }
 
 async function runLlama({
