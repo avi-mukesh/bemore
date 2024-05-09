@@ -17,7 +17,7 @@ export default function AvatarUpload({ userId }: PropsType) {
       <UploadButton
         endpoint="imageUploader"
         onClientUploadComplete={(res) => {
-          updateAvatar(userId, res[0].url);
+          updateAvatar(userId, res[0].url); 
           toast("Avatar updated successfully!");
         }}
         onUploadError={(error: Error) => {

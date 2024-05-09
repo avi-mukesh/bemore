@@ -28,14 +28,15 @@ export default async function page() {
 
   return (
     <div className="flex flex-col items-center gap-2 h-full">
-      <Chat
+      <p>Assistant has been disabled temporarily.</p>
+      {/* <Chat
         username={session?.user?.username}
         avatar={session?.user?.image}
         journaledToday={journaledToday}
         meditatedToday={meditatedToday}
         hobbyToday={hobbyToday}
         readToday={readToday}
-      />
+      /> */}
     </div>
   );
 }
