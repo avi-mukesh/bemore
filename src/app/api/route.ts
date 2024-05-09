@@ -16,16 +16,15 @@ if (!process.env.REPLICATE_API_TOKEN) {
 
 export async function POST(req: NextRequest) {
   const params = await req.json();
-  
 
   let response = await runLlama(params);
 
-    // console.log("RESPONSE:",response);
+  console.log("params:", params);
 
   // Convert the response into a friendly text-stream
   const stream = await ReplicateStream(response);
 
-  console.log("STREAM:", stream)
+  console.log("STREAM:", stream);
 
   // Respond with the stream
   return new StreamingTextResponse(stream);
@@ -38,7 +37,14 @@ async function runLlama({
   maxTokens,
   temperature,
   topP,
-}: {model: string, prompt: string, systemPrompt: string, maxTokens: number, temperature: number, topP: number}) {
+}: {
+  model: string;
+  prompt: string;
+  systemPrompt: string;
+  maxTokens: number;
+  temperature: number;
+  topP: number;
+}) {
   console.log("running llama");
   console.log("model", model);
   console.log("maxTokens", maxTokens);
